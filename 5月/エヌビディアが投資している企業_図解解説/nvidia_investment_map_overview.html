@@ -1,0 +1,225 @@
+
+<style>
+h2.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
+*{box-sizing:border-box}
+.map-wrap{padding:16px 0;font-family:var(--font-sans)}
+.map-title{font-size:18px;font-weight:500;color:var(--color-text-primary);margin-bottom:4px}
+.map-sub{font-size:13px;color:var(--color-text-secondary);margin-bottom:20px}
+.sector-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.sector-card{background:var(--color-background-secondary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:14px;cursor:pointer;transition:border-color .15s,background .15s}
+.sector-card:hover{background:var(--color-background-primary);border-color:var(--color-border-secondary)}
+.sector-card.active{border-width:1.5px}
+.sector-icon{font-size:22px;margin-bottom:6px}
+.sector-name{font-size:13px;font-weight:500;color:var(--color-text-primary);margin-bottom:3px}
+.sector-count{font-size:11px;color:var(--color-text-secondary)}
+.sector-bar{height:3px;border-radius:2px;margin-top:8px;background:currentColor;opacity:.4}
+.detail-panel{margin-top:20px;background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:16px;display:none}
+.detail-panel.show{display:block}
+.detail-header{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.detail-icon{font-size:24px}
+.detail-title{font-size:16px;font-weight:500;color:var(--color-text-primary)}
+.detail-desc{font-size:12px;color:var(--color-text-secondary);margin-top:2px}
+.company-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}
+.company-tag{background:var(--color-background-secondary);border:0.5px solid var(--color-border-tertiary);border-radius:6px;padding:8px 10px;cursor:pointer;transition:border-color .15s}
+.company-tag:hover{border-color:var(--color-border-secondary)}
+.company-name{font-size:12px;font-weight:500;color:var(--color-text-primary);margin-bottom:2px}
+.company-desc{font-size:11px;color:var(--color-text-secondary);line-height:1.3}
+.amount-badge{display:inline-block;font-size:10px;padding:2px 6px;border-radius:4px;margin-top:4px;font-weight:500}
+.amt-mega{background:var(--color-background-danger);color:var(--color-text-danger)}
+.amt-large{background:var(--color-background-warning);color:var(--color-text-warning)}
+.amt-mid{background:var(--color-background-info);color:var(--color-text-info)}
+.amt-small{background:var(--color-background-success);color:var(--color-text-success)}
+.legend{display:flex;gap:12px;flex-wrap:wrap;margin-top:16px;padding-top:12px;border-top:0.5px solid var(--color-border-tertiary)}
+.legend-item{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--color-text-secondary)}
+.legend-dot{width:8px;height:8px;border-radius:2px}
+.stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:20px}
+.stat-box{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:10px 12px;text-align:center}
+.stat-num{font-size:22px;font-weight:500;color:var(--color-text-primary)}
+.stat-label{font-size:11px;color:var(--color-text-secondary);margin-top:2px}
+</style>
+<div class="map-wrap">
+<h2 class="sr-only">NVIDIAの投資ポートフォリオ 業界地図 — 138社以上に投資、分野別に整理</h2>
+<div class="map-title">NVIDIA 投資ポートフォリオ 業界地図</div>
+<div class="map-sub">NVenturesを含む138社超の投資先を分野別に整理 (2025年末時点)</div>
+<div class="stats-row">
+  <div class="stat-box"><div class="stat-num">138+</div><div class="stat-label">総投資先企業数</div></div>
+  <div class="stat-box"><div class="stat-num">67</div><div class="stat-label">2025年VC投資件数</div></div>
+  <div class="stat-box"><div class="stat-num">$13T+</div><div class="stat-label">ポートフォリオ推定総額</div></div>
+</div>
+<div class="sector-grid" id="sectors"></div>
+<div class="detail-panel" id="detail">
+  <div class="detail-header">
+    <div class="detail-icon" id="d-icon"></div>
+    <div><div class="detail-title" id="d-title"></div><div class="detail-desc" id="d-desc"></div></div>
+  </div>
+  <div class="company-grid" id="d-companies"></div>
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot" style="background:var(--color-background-danger);border:1px solid var(--color-text-danger)"></div>超大型($1B+)</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--color-background-warning);border:1px solid var(--color-text-warning)"></div>大型($500M+)</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--color-background-info);border:1px solid var(--color-text-info)"></div>中型($100M+)</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--color-background-success);border:1px solid var(--color-text-success)"></div>小型/非公開</div>
+  </div>
+</div>
+</div>
+<script>
+const sectors=[
+  {id:'foundational',icon:'🧠',name:'基盤AIモデル / LLM',color:'#7F77DD',count:10,
+   desc:'大規模言語モデルや基盤モデル開発企業',
+   companies:[
+    {n:'OpenAI',d:'ChatGPT開発元',a:'mega'},
+    {n:'Anthropic',d:'Claude開発 最大$10B',a:'mega'},
+    {n:'xAI',d:'Elon MuskのAI企業',a:'mega'},
+    {n:'Mistral AI',d:'仏LLMスタートアップ €1.7B調達',a:'large'},
+    {n:'Reflection AI',d:'米オープンフロンティアAI $2B',a:'mega'},
+    {n:'Thinking Machines Lab',d:'Mira Murati創業 $2B seed',a:'mega'},
+    {n:'Cohere',d:'エンタープライズLLM $500M',a:'large'},
+    {n:'Inflection AI',d:'初期主要投資先',a:'large'},
+    {n:'Reka AI',d:'AI研究ラボ $110M',a:'mid'},
+    {n:'Black Forest Labs',d:'画像生成AI',a:'mid'},
+  ]},
+  {id:'infra',icon:'🏗️',name:'AIインフラ / クラウド',color:'#1D9E75',count:12,
+   desc:'GPU クラウド・データセンター・AI計算基盤',
+   companies:[
+    {n:'CoreWeave',d:'GPU特化クラウド',a:'mega'},
+    {n:'Lambda Labs',d:'GPUクラウド・AIインフラ',a:'large'},
+    {n:'Together AI',d:'オープンモデル推論基盤',a:'mid'},
+    {n:'Nscale',d:'英AIデータセンター £500M',a:'large'},
+    {n:'Applied Digital',d:'HPC データセンター $160M (売却済)',a:'mid'},
+    {n:'Perplexity',d:'AI検索エンジン',a:'mid'},
+    {n:'Hugging Face',d:'AIモデルハブ',a:'large'},
+    {n:'Nebius Group',d:'AIクラウドインフラ',a:'mid'},
+    {n:'Unstructured',d:'非構造化データ処理',a:'mid'},
+    {n:'Cohesity',d:'データ管理・セキュリティ',a:'mid'},
+    {n:'Ayar Labs',d:'光インターコネクト $155M',a:'mid'},
+    {n:'Enfabrica',d:'ネットワークチップ設計(買収)',a:'mid'},
+  ]},
+  {id:'robotics',icon:'🤖',name:'ロボティクス / 自律系',color:'#D85A30',count:10,
+   desc:'物理AI・ロボット・自律走行・製造自動化',
+   companies:[
+    {n:'Figure AI',d:'ヒューマノイドロボット $1B+ 評価$39B',a:'mega'},
+    {n:'Wayve',d:'英自律走行 $1.05B',a:'mega'},
+    {n:'Waabi',d:'自律トラック $200M',a:'mid'},
+    {n:'Bright Machines',d:'スマートファクトリー $126M',a:'mid'},
+    {n:'Carbon Robotics',d:'農業レーザー除草ロボット',a:'small'},
+    {n:'Flexion',d:'ロボット汎用モデル',a:'small'},
+    {n:'Skild AI',d:'汎用ロボット知性',a:'mid'},
+    {n:'FieldAI',d:'産業用自律ロボット',a:'small'},
+    {n:'PhysicsX',d:'物理AI・シミュレーション',a:'mid'},
+    {n:'World Labs',d:'空間知性・世界モデル',a:'large'},
+  ]},
+  {id:'healthcare',icon:'🔬',name:'ヘルスケア / バイオテック',color:'#993556',count:12,
+   desc:'創薬・医療AI・手術ロボット・ゲノミクス',
+   companies:[
+    {n:'Genesis Therapeutics',d:'AI創薬プラットフォーム',a:'mid'},
+    {n:'Inceptive',d:'RNA設計・生成AI',a:'mid'},
+    {n:'Terray Therapeutics',d:'分子シミュレーション創薬',a:'mid'},
+    {n:'Charm Therapeutics',d:'英バイオテック $80M',a:'mid'},
+    {n:'Evozyne',d:'タンパク質設計AI',a:'small'},
+    {n:'Generate Biomedicines',d:'タンパク質生成AI $1B超評価',a:'large'},
+    {n:'Lila Science',d:'AI自動実験ラボ $350M',a:'large'},
+    {n:'Abridge',d:'医師-患者会話AI',a:'mid'},
+    {n:'Flywheel',d:'医療画像データ管理',a:'mid'},
+    {n:'Moon Surgical',d:'仏・手術支援ロボット',a:'mid'},
+    {n:'Neocis',d:'歯科インプラントロボット',a:'mid'},
+    {n:'VinBrain',d:'医療AIスタートアップ(買収)',a:'small'},
+  ]},
+  {id:'enterprise',icon:'💼',name:'エンタープライズAI / SaaS',color:'#185FA5',count:8,
+   desc:'企業向けAIエージェント・コード・業務自動化',
+   companies:[
+    {n:'Cursor',d:'AIコードエディタ $2.3B 評価$29B',a:'mega'},
+    {n:'Scale AI',d:'AIデータラベリング $1B',a:'mega'},
+    {n:'Kore.ai',d:'エンタープライズAIチャット $150M',a:'mid'},
+    {n:'Sandbox AQ',d:'量子数値モデル $150M',a:'mid'},
+    {n:'OctoAI',d:'生成AI最適化(買収) $250M',a:'mid'},
+    {n:'Imbue',d:'AI推論・エージェント',a:'mid'},
+    {n:'SoundHound AI',d:'音声AI(売却済)',a:'small'},
+    {n:'Deepgram',d:'音声認識AI',a:'mid'},
+  ]},
+  {id:'hardware',icon:'⚡',name:'ハードウェア / 半導体',color:'#BA7517',count:6,
+   desc:'チップ設計・EDA・次世代コンピューティング',
+   companies:[
+    {n:'Intel',d:'x86 CPU協業 $5B 最大株主',a:'mega'},
+    {n:'Synopsys',d:'EDA・半導体設計ツール',a:'large'},
+    {n:'Nokia',d:'ネットワーク通信',a:'large'},
+    {n:'Quantinuum',d:'英量子コンピュータ 評価$10B',a:'large'},
+    {n:'Commonwealth Fusion',d:'核融合エネルギー $863M',a:'large'},
+    {n:'Redwood Materials',d:'EV電池リサイクル',a:'mid'},
+  ]},
+  {id:'finance',icon:'💰',name:'フィンテック / その他',color:'#3B6D11',count:4,
+   desc:'金融・フィンテック・多様な応用分野',
+   companies:[
+    {n:'Revolut',d:'英フィンテック 評価$75B',a:'mega'},
+    {n:'Runway',d:'AI動画生成',a:'mid'},
+    {n:'CuspAI',d:'英材料発見AI $100M',a:'mid'},
+    {n:'Adaptive',d:'サイバーセキュリティAI',a:'small'},
+  ]},
+  {id:'europe',icon:'🌍',name:'欧州スタートアップ',color:'#534AB7',count:8,
+   desc:'2025年に急増した欧州投資 (14件)',
+   companies:[
+    {n:'Mistral AI',d:'仏 LLM Series C €1.7B',a:'mega'},
+    {n:'Nscale',d:'英 AIクラウド £500M',a:'large'},
+    {n:'Revolut',d:'英 フィンテック $75B評価',a:'mega'},
+    {n:'Quantinuum',d:'英 量子コンピュータ',a:'large'},
+    {n:'CuspAI',d:'英 材料AI $100M',a:'mid'},
+    {n:'Charm Therapeutics',d:'英 バイオテック $80M',a:'mid'},
+    {n:'PolyAI',d:'英 音声AI $86M',a:'mid'},
+    {n:'Cassava Technologies',d:'アフリカ データセンター',a:'small'},
+  ]},
+  {id:'strategic',icon:'🔗',name:'戦略的パートナー株式保有',color:'#5F5E5A',count:5,
+   desc:'SEC 13F申告上場株・大型戦略保有',
+   companies:[
+    {n:'Intel',d:'約4%株主・GPU協業 $7.9B',a:'mega'},
+    {n:'CoreWeave',d:'IPO後も主要株主',a:'mega'},
+    {n:'Synopsys',d:'EDAツール企業',a:'large'},
+    {n:'Nokia',d:'ネットワーク企業',a:'large'},
+    {n:'Nebius Group',d:'AIクラウド',a:'mid'},
+  ]},
+];
+
+let active=null;
+const grid=document.getElementById('sectors');
+sectors.forEach(s=>{
+  const card=document.createElement('div');
+  card.className='sector-card';
+  card.innerHTML=`<div class="sector-icon">${s.icon}</div>
+    <div class="sector-name">${s.name}</div>
+    <div class="sector-count">${s.count}社+</div>
+    <div class="sector-bar" style="color:${s.color};width:${Math.min(100,s.count*8)}%"></div>`;
+  card.style.borderLeftColor=s.color;
+  card.addEventListener('click',()=>{
+    if(active===s.id){
+      active=null;
+      card.classList.remove('active');
+      document.getElementById('detail').classList.remove('show');
+      return;
+    }
+    document.querySelectorAll('.sector-card').forEach(c=>c.classList.remove('active'));
+    card.classList.add('active');
+    card.style.borderLeftWidth='3px';
+    active=s.id;
+    showDetail(s);
+  });
+  grid.appendChild(card);
+});
+
+function showDetail(s){
+  document.getElementById('d-icon').textContent=s.icon;
+  document.getElementById('d-title').textContent=s.name;
+  document.getElementById('d-desc').textContent=s.desc;
+  const cg=document.getElementById('d-companies');
+  cg.innerHTML='';
+  s.companies.forEach(c=>{
+    const tag=document.createElement('div');
+    tag.className='company-tag';
+    tag.innerHTML=`<div class="company-name">${c.n}</div>
+      <div class="company-desc">${c.d}</div>
+      <span class="amount-badge amt-${c.a}">${{mega:'超大型$1B+',large:'大型$500M+',mid:'中型$100M+',small:'小型/非公開'}[c.a]}</span>`;
+    tag.addEventListener('click',()=>sendPrompt(`NVIDIAの${c.n}への投資についてもっと詳しく教えて`));
+    cg.appendChild(tag);
+  });
+  const panel=document.getElementById('detail');
+  panel.style.borderLeftColor=s.color;
+  panel.style.borderLeftWidth='3px';
+  panel.classList.add('show');
+}
+</script>

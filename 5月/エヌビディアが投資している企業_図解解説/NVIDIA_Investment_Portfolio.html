@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NVIDIA Investment Portfolio - AI帝国の全貌 完全解説</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary: #76b900;
+            --primary-glow: rgba(118, 185, 0, 0.4);
+            --bg: #0b0e14;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --card-hover: rgba(255, 255, 255, 0.07);
+            --text: #e0e0e0;
+            --text-muted: #94a3b8;
+            --border: rgba(255, 255, 255, 0.1);
+            --accent-blue: #38bdf8;
+            --accent-purple: #818cf8;
+            --accent-green: #34d399;
+            --accent-orange: #fb923c;
+            --accent-red: #f87171;
+            --font-main: 'Inter', sans-serif;
+            --font-title: 'Outfit', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* Animated Background */
+        .ambient-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background:
+                radial-gradient(circle at 10% 10%, rgba(118, 185, 0, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 90% 90%, rgba(56, 189, 248, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 50% 50%, rgba(129, 140, 248, 0.03) 0%, transparent 60%);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Typography */
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: var(--font-title);
+            line-height: 1.2;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--border);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--text-muted);
+        }
+
+        /* --- Header & Hero --- */
+        header {
+            padding: 8rem 0 6rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-badge {
+            background: var(--primary-glow);
+            color: var(--primary);
+            padding: 0.5rem 1.5rem;
+            border-radius: 99px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin-bottom: 2rem;
+            border: 1px solid var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .main-title {
+            font-size: 5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            letter-spacing: -2px;
+        }
+
+        .main-title span {
+            color: var(--primary);
+        }
+
+        .hero-desc {
+            font-size: 1.4rem;
+            color: var(--text-muted);
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .highlights-strip {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-top: 5rem;
+        }
+
+        .highlight-item {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            padding: 2rem;
+            border-radius: 24px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .highlight-item:hover {
+            transform: translateY(-10px);
+            background: var(--card-hover);
+            border-color: var(--primary);
+        }
+
+        .highlight-val {
+            display: block;
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--primary);
+            font-family: var(--font-title);
+        }
+
+        .highlight-lbl {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        /* --- Navigation --- */
+        nav {
+            position: sticky;
+            top: 20px;
+            z-index: 1000;
+            margin: 0 2rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        .nav-inner {
+            background: rgba(11, 14, 20, 0.7);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            padding: 0.6rem;
+            border-radius: 99px;
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .nav-inner a {
+            padding: 0.6rem 1.5rem;
+            border-radius: 99px;
+            text-decoration: none;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .nav-inner a:hover {
+            color: #fff;
+            background: var(--border);
+        }
+
+        .nav-inner a.active {
+            background: var(--primary);
+            color: #000;
+        }
+
+        /* --- Global Sections --- */
+        section {
+            padding: 8rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .section-header {
+            margin-bottom: 4rem;
+            max-width: 800px;
+        }
+
+        .section-label {
+            color: var(--primary);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* --- Analysis Content (Detailed Text) --- */
+        .analysis-container {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 4rem;
+            background: var(--card-bg);
+            padding: 4rem;
+            border-radius: 40px;
+            border: 1px solid var(--border);
+        }
+
+        .analysis-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+
+        .analysis-text ul {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .analysis-text li {
+            position: relative;
+            padding-left: 2rem;
+            margin-bottom: 1rem;
+            color: var(--text-muted);
+        }
+
+        .analysis-text li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .analysis-sidebar {
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 24px;
+            padding: 2rem;
+            border: 1px solid var(--border);
+        }
+
+        /* --- Investment Map (Interactive Tile UI) --- */
+        .sector-tiles {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .sector-tile {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 2rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .sector-tile:hover {
+            border-color: var(--primary);
+            background: var(--card-hover);
+        }
+
+        .sector-tile.active {
+            border-color: var(--primary);
+            box-shadow: 0 0 30px rgba(118, 185, 0, 0.2);
+        }
+
+        .tile-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .tile-name {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .tile-count {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .tile-bar {
+            height: 4px;
+            border-radius: 2px;
+            background: var(--primary);
+            margin-top: 1rem;
+            transform-origin: left;
+            transition: transform 0.5s;
+        }
+
+        .sector-detail-box {
+            margin-top: 3rem;
+            background: var(--card-bg);
+            border-radius: 32px;
+            border: 1px solid var(--border);
+            padding: 3rem;
+            display: none;
+        }
+
+        .sector-detail-box.show {
+            display: block;
+            animation: fadeIn 0.5s forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* --- Company Grid & Cards --- */
+        .company-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .company-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            transition: all 0.3s;
+        }
+
+        .company-card:hover {
+            border-color: var(--primary);
+            transform: scale(1.02);
+        }
+
+        .card-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .badge {
+            font-size: 0.7rem;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .badge.mega {
+            background: rgba(248, 113, 113, 0.1);
+            color: var(--accent-red);
+            border: 1px solid var(--accent-red);
+        }
+
+        .badge.large {
+            background: rgba(251, 146, 60, 0.1);
+            color: var(--accent-orange);
+            border: 1px solid var(--accent-orange);
+        }
+
+        .badge.mid {
+            background: rgba(56, 189, 248, 0.1);
+            color: var(--accent-blue);
+            border: 1px solid var(--accent-blue);
+        }
+
+        .badge.small {
+            background: rgba(52, 211, 153, 0.1);
+            color: var(--accent-green);
+            border: 1px solid var(--accent-green);
+        }
+
+        .company-name {
+            font-size: 1.6rem;
+            font-weight: 800;
+            font-family: var(--font-title);
+        }
+
+        .company-desc {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        .card-footer {
+            margin-top: auto;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .valuation-text {
+            font-weight: 700;
+            font-family: var(--font-title);
+            color: #fff;
+        }
+
+        .kabutan-btn {
+            background: #e62e00;
+            color: #fff;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 10px;
+            font-size: 0.75rem;
+            font-weight: 800;
+        }
+
+        .chart-box {
+            width: 100%;
+            height: 220px;
+            background: #000;
+            border-radius: 12px;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+
+        /* --- Flywheel & Timeline --- */
+        .flywheel-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .flywheel-card {
+            background: linear-gradient(180deg, rgba(118, 185, 0, 0.05) 0%, transparent 100%);
+            border: 1px solid var(--border);
+            border-radius: 32px;
+            padding: 3rem;
+            position: relative;
+        }
+
+        .fw-num {
+            font-size: 4rem;
+            font-weight: 900;
+            color: rgba(255, 255, 255, 0.05);
+            position: absolute;
+            top: 1rem;
+            right: 2rem;
+        }
+
+        .fw-title {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+
+        .timeline-container {
+            margin-top: 5rem;
+            padding: 2rem;
+            background: var(--card-bg);
+            border-radius: 32px;
+        }
+
+        .timeline-row {
+            display: flex;
+            gap: 2rem;
+            padding: 2.5rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .timeline-year {
+            font-size: 1.5rem;
+            font-weight: 800;
+            min-width: 120px;
+            color: var(--primary);
+        }
+
+        .timeline-content h4 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-detail {
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+
+        footer {
+            padding: 6rem 0;
+            text-align: center;
+            border-top: 1px solid var(--border);
+            color: var(--text-muted);
+        }
+
+        @media (max-width: 1024px) {
+            .main-title {
+                font-size: 3.5rem;
+            }
+
+            .highlights-strip {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .analysis-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="ambient-bg"></div>
+
+    <div class="container">
+        <header>
+            <span class="hero-badge">Revolutionizing AI Ecosystem</span>
+            <h1 class="main-title">NVIDIA <span>Investment</span> Portfolio</h1>
+            <p class="hero-desc">AI帝国の全貌と「GPUフライホイール」戦略の徹底解剖。総投資先138社超のデータを可視化した完全解説レポート。</p>
+
+            <div class="highlights-strip">
+                <div class="highlight-item">
+                    <span class="highlight-val">138社+</span>
+                    <span class="highlight-lbl">Total Companies</span>
+                </div>
+                <div class="highlight-item">
+                    <span class="highlight-val">67件</span>
+                    <span class="highlight-lbl">2025 Investments</span>
+                </div>
+                <div class="highlight-item">
+                    <span class="highlight-val">$13T+</span>
+                    <span class="highlight-lbl">Portfolio Value</span>
+                </div>
+                <div class="highlight-item">
+                    <span class="highlight-val">$7.9B</span>
+                    <span class="highlight-lbl">Highest Hold (Intel)</span>
+                </div>
+            </div>
+        </header>
+
+        <nav>
+            <div class="nav-inner">
+                <a href="#summary" class="active">概要</a>
+                <a href="#map">業界地図</a>
+                <a href="#physical">Physical AI</a>
+                <a href="#strategy">戦略分析</a>
+                <a href="#timeline">推移</a>
+            </div>
+        </nav>
+
+        <!-- Summary & Chapters 1-2 -->
+        <section id="summary">
+            <div class="analysis-container">
+                <div class="analysis-text">
+                    <span class="section-label">Executive Summary</span>
+                    <h2 class="section-title">AIインフラの覇者から、AI帝国の盟主へ</h2>
+                    <p>NVIDIAはGPUメーカーとしての枠を完全に超え、2023年以降の生成AI革命を追い風に「AI産業のインフラ帝国」を築き上げました。</p>
+                    <p>投資部門 <strong>NVentures</strong> を中軸に、スタートアップから上場大手まで多層的な投資を展開。その哲学は「Game Changers and Market
+                        Makers（常識を変え、市場を創る者）」を世界中で支援することにあります。</p>
+
+                    <h3>主要チャンネル</h3>
+                    <ul>
+                        <li><strong>NVentures:</strong> AUM約5億ドル。初期〜中期スタートアップへ戦略的出資。</li>
+                        <li><strong>コーポレート戦略投資:</strong> ジェンスン・ファン直轄。OpenAI、Intel等の超大型案件を担当。</li>
+                        <li><strong>NVIDIA Inception:</strong> 資本を使わない3万社超のエコシステム支援。</li>
+                    </ul>
+                </div>
+                <div class="analysis-sidebar">
+                    <h3>Investor Insight</h3>
+                    <p style="font-size: 0.9rem; color: var(--text-muted);">
+                        NVIDIAの投資は、単なる財務リターンの追求ではありません。投資先がNVIDIAのGPU、CUDA、そしてSDK（BioNeMo,
+                        Isaac等）を採用することで、GPU需要が自己増殖する仕組みを作っています。これが「GPUフライホイール」の本質です。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Investment Map -->
+        <section id="map">
+            <span class="section-label">Investment Map</span>
+            <h2 class="section-title">ポートフォリオ業界地図</h2>
+            <p style="margin-bottom: 3rem; color: var(--text-muted);">カテゴリーをクリックすると、詳細な投資先企業とマーケットデータが表示されます。</p>
+
+            <div class="sector-tiles" id="sector-tiles">
+                <!-- Data will be injected here via JS -->
+            </div>
+
+            <div class="sector-detail-box" id="sector-detail">
+                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem;">
+                    <span id="detail-icon" style="font-size: 3rem;"></span>
+                    <div>
+                        <h3 id="detail-title" style="font-size: 2rem; color: var(--primary);"></h3>
+                        <p id="detail-desc" style="color: var(--text-muted); margin: 0;"></p>
+                    </div>
+                </div>
+                <div class="company-grid" id="company-grid"></div>
+            </div>
+        </section>
+
+        <!-- Physical AI Deep Dive -->
+        <section id="physical">
+            <div class="analysis-container"
+                style="background: linear-gradient(135deg, rgba(129, 140, 248, 0.05) 0%, transparent 100%);">
+                <div class="analysis-text">
+                    <span class="section-label">Next Frontier</span>
+                    <h2 class="section-title">Physical AI (フィジカルAI)</h2>
+                    <p>実世界で機能するAIこそがNVIDIAの次なる戦場です。ロボティクス、自動運転、そしてヘルスケア。これらは莫大な計算量を必要とし、NVIDIAの <strong>Isaac
+                            Platform</strong> や <strong>Cosmos World Models</strong> と密接に結びついています。</p>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 2rem;">
+                        <div class="highlight-item" style="padding: 1.5rem;">
+                            <h4 style="color: var(--primary);">Robot Intelligence</h4>
+                            <p style="font-size: 0.85rem; margin: 0;">Figure AIやSkild AIへの出資により、汎用ヒューマノイドの「脳」を掌握。</p>
+                        </div>
+                        <div class="highlight-item" style="padding: 1.5rem;">
+                            <h4 style="color: var(--accent-blue);">Healthcare AI</h4>
+                            <p style="font-size: 0.85rem; margin: 0;">Lila Science等の自律型実験室への投資。創薬の計算プロセスを独占。</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="analysis-sidebar">
+                    <h3>Focus: Wayve & Figure</h3>
+                    <p>英国の自律走行 <strong>Wayve</strong> へ$1.05B、ヒューマノイド <strong>Figure</strong>
+                        へ$1B+。これらはAIをスクリーンから物理空間へ引き出すための最重要布石です。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Strategy Analysis -->
+        <section id="strategy">
+            <span class="section-label">Strategic Logic</span>
+            <h2 class="section-title">投資戦略の4つの柱</h2>
+            <div class="flywheel-grid">
+                <div class="flywheel-card">
+                    <span class="fw-num">01</span>
+                    <h3 class="fw-title">GPUの重力 (GPU Gravity)</h3>
+                    <p>投資先がGPUを大量消費する事業を展開することで、投資リターンと売上が同時に成立する独自の収益構造。</p>
+                </div>
+                <div class="flywheel-card">
+                    <span class="fw-num">02</span>
+                    <h3 class="fw-title">全層ロックイン (Full Stack)</h3>
+                    <p>インフラからアプリ、コードエディタまで全層に出資。他社へ乗り換える隙を与えない「NVIDIA経済圏」の構築。</p>
+                </div>
+                <div class="flywheel-card">
+                    <span class="fw-num">03</span>
+                    <h3 class="fw-title">次代への保険 (Hedging)</h3>
+                    <p>量子計算や核融合、光コンピューティングへの投資。GPU時代の「次」をも既に掌握し始めています。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Timeline -->
+        <section id="timeline">
+            <span class="section-label">Historical Evolution</span>
+            <h2 class="section-title">投資活動の推移</h2>
+            <div class="timeline-container">
+                <div class="timeline-row">
+                    <div class="timeline-year">2021-22</div>
+                    <div class="timeline-content">
+                        <h4>黎明期 (Early Seeds)</h4>
+                        <p class="timeline-detail">Inflection AI ($1.3B) 等、極めて少数の案件。VC組織としての形を模索。</p>
+                    </div>
+                </div>
+                <div class="timeline-row">
+                    <div class="timeline-year">2023</div>
+                    <div class="timeline-content">
+                        <h4>ChatGPT革命後の加速</h4>
+                        <p class="timeline-detail">投資件数が前年比3倍。NVenturesが本格始動。創薬、ロボティクスへの重点投資開始。</p>
+                    </div>
+                </div>
+                <div class="timeline-row">
+                    <div class="timeline-year">2024</div>
+                    <div class="timeline-content">
+                        <h4>戦略的大規模案件の続出</h4>
+                        <p class="timeline-detail">OpenAI $100M、Scale AI $1B、Wayve $1.05B。SEC 13FでIntel等の保有が判明。</p>
+                    </div>
+                </div>
+                <div class="timeline-row">
+                    <div class="timeline-year">2025</div>
+                    <div class="timeline-content">
+                        <h4>過去最高 67件/年</h4>
+                        <p class="timeline-detail">Anthropic $10B、Cursor $2.3B、xAI $6B。欧州投資が2倍に増加。Intel株は$7.9Bに拡大。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>© 2026 TechMoney AI Analysis. NVIDIA Investment Portfolio Complete Report Edition.</p>
+            <p style="font-size: 0.8rem; margin-top: 1rem;">Data sourced from SEC 13F, PitchBook, and NVIDIA Corporate
+                Disclosures. 投資はあくまで自己責任で。</p>
+        </footer>
+    </div>
+    <!-- Data & Scripts -->
+    <script src="https://s3.tradingview.com/tv.js"></script>
+    <script>
+        const sectors = [
+            {
+                id: 'foundational', icon: '🧠', name: '基盤AIモデル / LLM', count: 10, desc: 'OpenAI, Anthropic, xAIなど、AI能力の中核をなす開発企業群。NVIDIAが最も大型の投資を集中させている分野です。',
+                companies: [
+                    { n: 'OpenAI', d: 'ChatGPT開発元。評価額$1570億超。NVIDIAと最大$100Bの戦略的提携。', a: 'mega', v: '$157B+', t: null },
+                    { n: 'Anthropic', d: 'Claude開発元。最大$100億ドルの共同投資。$300億Azure支出を約束。', a: 'mega', v: '$30B+', t: null },
+                    { n: 'xAI', d: 'Elon Musk創業。GPU購入と投資を連動させた戦略的パートナー。', a: 'mega', v: '$24B+', t: null },
+                    { n: 'Mistral AI', d: 'フランス発、欧州最強のLLMスタートアップ。評価€117億。', a: 'large', v: '€11.7B', t: null },
+                    { n: 'Reflection AI', d: '米オープンフロンティアAI。$2Bラウンドの主要投資家。', a: 'mega', v: '$8B', t: null },
+                    { n: 'Thinking Machines Lab', d: 'Mira Murati（元OpenAI CTO）創業。評価$120億。', a: 'mega', v: '$12B', t: null },
+                    { n: 'Cohere', d: 'エンタープライズ特化LLM。評価$68億。', a: 'large', v: '$6.8B', t: null },
+                    { n: 'Inflection AI', d: 'NVIDIAの初期主要AI投資先。$1.3Bラウンド共同リード。', a: 'large', v: '$4B+', t: null },
+                    { n: 'Reka AI', d: 'マルチモーダルAI開発。評価$1B超。', a: 'mid', v: '$1B+', t: null },
+                    { n: 'Black Forest Labs', d: 'Flux画像生成モデル開発元。', a: 'mid', v: 'Unicorn', t: null }
+                ]
+            },
+            {
+                id: 'infra', icon: '🏗️', name: 'AIインフラ / クラウド', count: 12, desc: 'GPUをサービスとして提供、またはデータセンターを運営する企業。最大の計算需要創出源です。',
+                companies: [
+                    { n: 'CoreWeave', d: 'Nvidia GPU専門クラウド。最大のGPU需要先の一つ。', a: 'mega', v: 'Public Orbit', t: 'CRWV' },
+                    { n: 'Lambda Labs', d: 'AI研究者向けGPUクラウド・スーパーコンピュータ。', a: 'large', v: '$1.5B+', t: null },
+                    { n: 'Nscale', d: '英国AIデータセンター。£500M投資宣言。', a: 'large', v: '£500M', t: null },
+                    { n: 'Together AI', d: 'オープンソースモデルの推論基盤。複数ラウンド参加。', a: 'mid', v: '$1.2B+', t: null },
+                    { n: 'Nebius Group', d: '元Yandex系のAIクラウド。欧州・米国展開。', a: 'mid', v: 'Listed', t: 'NBIS' },
+                    { n: 'Perplexity', d: 'AI検索エンジン。急成長中のユニコーン。', a: 'mid', v: '$3B+', t: null },
+                    { n: 'Hugging Face', d: 'AIモデル共有プラットフォーム。評価$45億超。', a: 'large', v: '$4.5B', t: null },
+                    { n: 'Applied Digital', d: 'HPCデータセンター。2025年に株価238%上昇。', a: 'mid', v: 'Listed', t: 'APLD' },
+                    { n: 'Ayar Labs', d: 'チップ間光通信でAI電力効率改善。$155M調達。', a: 'mid', v: '$155M', t: null },
+                    { n: 'Cohesity', d: 'データセキュリティ・バックアップ基盤。', a: 'mid', v: 'Unicorn', t: null },
+                    { n: 'Unstructured', d: 'RAG等AI学習用データ前処理基盤。', a: 'mid', v: 'Target', t: null },
+                    { n: 'Enfabrica', d: 'ネットワークチップ設計。2025年に買収。', a: 'mid', v: '$900M', t: null }
+                ]
+            },
+            {
+                id: 'robotics', icon: '🤖', name: 'ロボティクス / 自律系', count: 10, desc: '「Physical AI」の核。実世界で動くAIとロボット訓練・シミュレーション基盤。',
+                companies: [
+                    { n: 'Figure AI', d: '汎用ヒューマノイドロボット。最注目株。評価$390億。', a: 'mega', v: '$39B', t: null },
+                    { n: 'Wayve', d: '英国発自己学習型自律走行。追加$500M投資予定。', a: 'mega', v: '$1.05B+', t: null },
+                    { n: 'Waabi', d: 'AI特化自律トラック。Uber/Khosla共同投資。', a: 'mid', v: '$200M+', t: null },
+                    { n: 'Bright Machines', d: 'AIロボット製造自動化ソフトウェア。', a: 'mid', v: '$126M', t: null },
+                    { n: 'Carbon Robotics', d: 'GPU搭載レーザー除草ロボット。農業AIの旗手。', a: 'small', v: 'NVentures', t: null },
+                    { n: 'Flexion', d: '汎用ロボットモデル。Isaac Gymで訓練。', a: 'small', v: 'Direct', t: null },
+                    { n: 'Skild AI', d: '汎用ロボット脳。Cosmosワールドモデル活用。', a: 'mid', v: 'Partner', t: null },
+                    { n: 'FieldAI', d: '産業用自律ロボット。Azure Physical AI連携。', a: 'small', v: 'Partner', t: null },
+                    { n: 'PhysicsX', d: '物理AIシミュレーション。CUDA-Xと深統合。', a: 'mid', v: 'Deep Tech', t: null },
+                    { n: 'World Labs', d: '空間知性・世界モデル。Fei-Fei Li創業。', a: 'large', v: 'Deep AI', t: null }
+                ]
+            },
+            {
+                id: 'health', icon: '🔬', name: 'ヘルスケア / バイオ', count: 12, desc: '創薬(BioNeMo)・医療AI(Clara)・手術ロボット(Isaac)の融合。',
+                companies: [
+                    { n: 'Lila Science', d: 'AI自動実験室。「自律実験室」の最注目株。', a: 'large', v: '$350M', t: null },
+                    { n: 'Generate Biomedicines', d: 'タンパク質生成AI。評価額$1B超。', a: 'large', v: '$1B+', t: null },
+                    { n: 'Abridge', d: '医師-患者対話を自動カルテ化。臨床効率化。', a: 'mid', v: 'Unicorn', t: null },
+                    { n: 'Genesis Therapeutics', d: 'AI+分子シミュレーション創薬。', a: 'mid', v: 'NVentures', t: null },
+                    { n: 'Inceptive', d: 'RNA分子の生成AI設計。mRNA応用。', a: 'mid', v: 'NVentures', t: null },
+                    { n: 'Terray Therapeutics', d: 'ターゲット構造モデリングで化合物特定。', a: 'mid', v: 'NVentures', t: null },
+                    { n: 'Charm Therapeutics', d: '英国バイオテック。累計$100M投資。', a: 'mid', v: '$100M', t: null },
+                    { n: 'Evozyne', d: '生成AIで機能タンパク質設計。', a: 'small', v: 'Direct', t: null },
+                    { n: 'Flywheel', d: '大規模医療画像データ管理・ML基盤。', a: 'mid', v: 'Platform', t: null },
+                    { n: 'Moon Surgical', d: '仏米・手術支援ロボットアシスタント。', a: 'mid', v: 'Mid Stage', t: null },
+                    { n: 'Neocis', d: '歯科インプラントロボット。', a: 'mid', v: 'Specialist', t: null },
+                    { n: 'VinBrain', d: 'ベトナム発医療AI。2024年に買収。', a: 'small', v: 'Acquired', t: null }
+                ]
+            },
+            {
+                id: 'enterprise', icon: '💼', name: 'ビジネス / 自動化', count: 8, desc: '業務自動化・コーディング・データラベリングのAI化。',
+                companies: [
+                    { n: 'Cursor', d: 'AI搭載コードエディタ。評価$29B。最強の生産性ツール。', a: 'mega', v: '$29B', t: null },
+                    { n: 'Scale AI', d: 'データラベリング最大手。評価$140億。', a: 'mega', v: '$14B', t: null },
+                    { n: 'Runway', d: '動画・映像制作向け生成AIプラットフォーム。', a: 'mid', v: 'Creative', t: null },
+                    { n: 'Kore.ai', d: '企業向けAIチャットボット基盤。', a: 'mid', v: 'SaaS', t: null },
+                    { n: 'Sandbox AQ', d: '量子数値モデル。Google/BNPと共同投資。', a: 'mid', v: 'Quantum', t: null },
+                    { n: 'OctoAI', d: '推論最適化。2024年に買収。', a: 'mid', v: '$250M', t: null },
+                    { n: 'Deepgram', d: 'エンタープライズ向け音声認識。', a: 'mid', v: 'Speech', t: null },
+                    { n: 'SoundHound AI', d: '音声AI。2024年に株式保有が話題に。', a: 'small', v: 'Listed', t: 'SOUN' }
+                ]
+            },
+            {
+                id: 'hardware', icon: '🔌', name: 'ハード・次世代', count: 8, desc: '現在のGPU時代の次を見据えた「戦略的オプション」群。',
+                companies: [
+                    { n: 'Intel', d: 'x86協業と製造委託。NVIDIA最大の上場保有株。', a: 'mega', v: '$7.9B Share', t: 'INTC' },
+                    { n: 'Arm Holdings', d: 'AI半導体設計の要。13F申告により判明。', a: 'mega', v: '$140B MCap', t: 'ARM' },
+                    { n: 'Synopsys', d: 'EDA(電子設計自動化)最大手。不可欠なツール。', a: 'large', v: 'Listed', t: 'SNPS' },
+                    { n: 'Nokia', d: '次世代ネットワーク。AI DC基盤。', a: 'large', v: 'Listed', t: 'NOK' },
+                    { n: 'Quantinuum', d: '英国量子コンピュータ最大手。評価$100億。', a: 'large', v: '$10B', t: null },
+                    { n: 'Commonwealth Fusion', d: 'MIT発核融合。AI計算でプラズマ制御。', a: 'large', v: '$3B', t: null },
+                    { n: 'Redwood Materials', d: 'EV電池リサイクル。AI電力インフラ。', a: 'mid', v: 'Sustainability', t: null },
+                    { n: 'Revolut', d: '欧州最高評価フィンテック。AIサービス展開。', a: 'mega', v: '$75B', t: null }
+                ]
+            }
+        ];
+
+        const container = document.getElementById('sector-tiles');
+        const detailBox = document.getElementById('sector-detail');
+
+        sectors.forEach(s => {
+            const tile = document.createElement('div');
+            tile.className = 'sector-tile';
+            tile.innerHTML = `
+                <span class="tile-icon">${s.icon}</span>
+                <div class="tile-name">${s.name}</div>
+                <div class="tile-count">${s.count}社+</div>
+                <div class="tile-bar" style="width: ${s.count * 8}px"></div>
+            `;
+            tile.onclick = () => showSector(s, tile);
+            container.appendChild(tile);
+        });
+
+        function showSector(s, el) {
+            document.querySelectorAll('.sector-tile').forEach(t => t.classList.remove('active'));
+            el.classList.add('active');
+
+            document.getElementById('detail-icon').innerText = s.icon;
+            document.getElementById('detail-title').innerText = s.name;
+            document.getElementById('detail-desc').innerText = s.desc;
+
+            const grid = document.getElementById('company-grid');
+            grid.innerHTML = '';
+            s.companies.forEach(c => {
+                const card = document.createElement('div');
+                card.className = 'company-card';
+                let tickerHtml = c.t ? `<a href="https://us.kabutan.jp/stocks/${c.t}" class="kabutan-btn">株たん 🇺🇸</a>` : '';
+                let chartHtml = c.t ? `<div class="chart-box" id="tv_${c.t}"></div>` : '<div style="height:100px; display:flex; align-items:center; color:var(--text-muted); font-size:0.8rem;">Private Equity - No Live Chart</div>';
+
+                card.innerHTML = `
+                    <div class="card-top">
+                        <span class="badge ${c.a}">${c.a.toUpperCase()}</span>
+                        ${tickerHtml}
+                    </div>
+                    <div class="company-name">${c.n}</div>
+                    <div class="company-desc">${c.d}</div>
+                    ${chartHtml}
+                    <div class="card-footer">
+                        <span class="valuation-text">${c.v}</span>
+                    </div>
+                `;
+                grid.appendChild(card);
+                if (c.t) initChart(c.t);
+            });
+
+            detailBox.classList.add('show');
+            detailBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        function initChart(ticker) {
+            setTimeout(() => {
+                const containerId = `tv_${ticker}`;
+                if (!document.getElementById(containerId)) return;
+                new TradingView.MediumWidget({
+                    "symbols": [[`NASDAQ:${ticker}|1D`]],
+                    "chartOnly": false,
+                    "width": "100%", "height": "100%", "locale": "en", "colorTheme": "dark",
+                    "autosize": true, "showVolume": false, "hideDateRanges": false,
+                    "scalePosition": "right", "scaleMode": "Normal", "fontFamily": "Inter, sans-serif",
+                    "noOverlays": false, "valuesTracking": "1", "chartType": "area",
+                    "lineColor": "#76b900", "bottomColor": "rgba(118, 185, 0, 0)", "topColor": "rgba(118, 185, 0, 0.3)",
+                    "container_id": containerId
+                });
+            }, 100);
+        }
+
+        // Initialize first sector
+        window.onload = () => {
+            const firstTile = document.querySelector('.sector-tile');
+            showSector(sectors[0], firstTile);
+        };
+    </script>
+</body>
+
+</html>

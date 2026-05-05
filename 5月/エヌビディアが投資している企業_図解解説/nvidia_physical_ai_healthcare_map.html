@@ -1,0 +1,245 @@
+
+<style>
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
+.wrap2{padding:16px 0;font-family:var(--font-sans)}
+.tab-row{display:flex;gap:6px;margin-bottom:16px;flex-wrap:wrap}
+.tab-btn{padding:6px 14px;border:0.5px solid var(--color-border-secondary);border-radius:20px;font-size:12px;background:transparent;color:var(--color-text-secondary);cursor:pointer;transition:all .15s}
+.tab-btn.active{background:var(--color-text-primary);color:var(--color-background-primary);border-color:var(--color-text-primary)}
+.panel2{display:none}.panel2.show{display:block}
+.flow-row{display:grid;gap:10px;margin-bottom:12px}
+.flow-row.cols2{grid-template-columns:1fr 1fr}
+.flow-row.cols3{grid-template-columns:1fr 1fr 1fr}
+.flow-row.cols4{grid-template-columns:repeat(4,1fr)}
+.fcard{background:var(--color-background-secondary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);padding:10px 12px;cursor:pointer;transition:background .15s}
+.fcard:hover{background:var(--color-background-primary)}
+.fcard-head{font-size:12px;font-weight:500;color:var(--color-text-primary);margin-bottom:3px}
+.fcard-body{font-size:11px;color:var(--color-text-secondary);line-height:1.4}
+.fcard-val{font-size:10px;margin-top:4px;font-weight:500}
+.val-mega{color:var(--color-text-danger)}
+.val-large{color:var(--color-text-warning)}
+.val-mid{color:var(--color-text-info)}
+.val-small{color:var(--color-text-success)}
+.section-label{font-size:11px;font-weight:500;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:.5px;margin:16px 0 8px;padding:6px 10px;background:var(--color-background-secondary);border-radius:4px;display:inline-block}
+.nvid-center{background:var(--color-background-primary);border:2px solid var(--color-border-primary);border-radius:var(--border-radius-lg);padding:12px 16px;text-align:center;margin-bottom:16px}
+.nvid-center-name{font-size:15px;font-weight:500;color:var(--color-text-primary)}
+.nvid-center-sub{font-size:11px;color:var(--color-text-secondary);margin-top:2px}
+.arrow-down{text-align:center;font-size:18px;color:var(--color-text-tertiary);margin:4px 0}
+.insight-box{background:var(--color-background-info);border:0.5px solid var(--color-border-info);border-radius:var(--border-radius-md);padding:10px 14px;margin-top:14px}
+.insight-text{font-size:12px;color:var(--color-text-info);line-height:1.5}
+</style>
+<div class="wrap2">
+<h2 class="sr-only">NVIDIAのPhysical AI・ヘルスケア・次世代技術投資マップ</h2>
+<div style="font-size:16px;font-weight:500;color:var(--color-text-primary);margin-bottom:4px">フロンティア投資 詳細マップ</div>
+<div style="font-size:12px;color:var(--color-text-secondary);margin-bottom:14px">ロボティクス / ヘルスケア / 量子・核融合の3分野を深掘り</div>
+<div class="tab-row">
+  <button class="tab-btn active" onclick="switchTab('robot',this)">🤖 ロボティクス・自律系</button>
+  <button class="tab-btn" onclick="switchTab('health',this)">🔬 ヘルスケア・バイオ</button>
+  <button class="tab-btn" onclick="switchTab('future',this)">⚡ 次世代コンピューティング</button>
+</div>
+
+<!-- ROBOT PANEL -->
+<div class="panel2 show" id="p-robot">
+  <div class="nvid-center">
+    <div class="nvid-center-name">NVIDIA Isaac Platform / Cosmos World Models</div>
+    <div class="nvid-center-sub">ロボット訓練・シミュレーション・実世界展開の技術基盤</div>
+  </div>
+  <div class="arrow-down">↓↓↓</div>
+  <div class="section-label">ヒューマノイドロボット</div>
+  <div class="flow-row cols3">
+    <div class="fcard" onclick="sendPrompt('Figure AIとNVIDIAの関係を詳しく教えて')">
+      <div class="fcard-head">Figure AI</div>
+      <div class="fcard-body">汎用ヒューマノイドロボット。Series C $1B+ 参加</div>
+      <div class="fcard-val val-mega">評価額 $39B ★ 最注目</div>
+    </div>
+    <div class="fcard" onclick="sendPrompt('FlexionとNVIDIAの関係を詳しく教えて')">
+      <div class="fcard-head">Flexion</div>
+      <div class="fcard-body">Isaac Gymで訓練した汎用ロボットモデルを実世界展開</div>
+      <div class="fcard-val val-small">NVentures投資先</div>
+    </div>
+    <div class="fcard" onclick="sendPrompt('Skild AIとNVIDIAの関係を詳しく教えて')">
+      <div class="fcard-head">Skild AI</div>
+      <div class="fcard-body">Cosmosワールドモデルで汎用ロボット脳を開発</div>
+      <div class="fcard-val val-mid">GTC 2025パートナー</div>
+    </div>
+  </div>
+  <div class="section-label">自律走行・物流</div>
+  <div class="flow-row cols3">
+    <div class="fcard" onclick="sendPrompt('WayveとNVIDIAの関係を詳しく教えて')">
+      <div class="fcard-head">Wayve</div>
+      <div class="fcard-body">英・自己学習型自律走行。追加$500M投資予定</div>
+      <div class="fcard-val val-mega">調達 $1.05B</div>
+    </div>
+    <div class="fcard" onclick="sendPrompt('WaabiとNVIDIAの関係を詳しく教えて')">
+      <div class="fcard-head">Waabi</div>
+      <div class="fcard-body">AI特化自律トラック。Uber/Khoslaと共同投資</div>
+      <div class="fcard-val val-mid">調達 $200M</div>
+    </div>
+    <div class="fcard" onclick="sendPrompt('Bright MachinesとNVIDIAの関係を詳しく教えて')">
+      <div class="fcard-head">Bright Machines</div>
+      <div class="fcard-body">スマートファクトリー・製造自動化AI</div>
+      <div class="fcard-val val-mid">調達 $126M</div>
+    </div>
+  </div>
+  <div class="section-label">農業・産業・シミュレーション</div>
+  <div class="flow-row cols3">
+    <div class="fcard" onclick="sendPrompt('Carbon RoboticsとNVIDIAの関係を詳しく教えて')">
+      <div class="fcard-head">Carbon Robotics</div>
+      <div class="fcard-body">NVIDIA GPU 24基搭載レーザー除草ロボット</div>
+      <div class="fcard-val val-small">NVentures直接投資</div>
+    </div>
+    <div class="fcard" onclick="sendPrompt('PhysicsXとNVIDIAの関係を詳しく教えて')">
+      <div class="fcard-head">PhysicsX</div>
+      <div class="fcard-body">大型物理・形状モデルでAI設計シミュレーション</div>
+      <div class="fcard-val val-mid">CUDA-Xと深い統合</div>
+    </div>
+    <div class="fcard" onclick="sendPrompt('FieldAIとNVIDIAの関係を詳しく教えて')">
+      <div class="fcard-head">FieldAI</div>
+      <div class="fcard-body">産業用自律ロボット展開 Cosmosデータ生成活用</div>
+      <div class="fcard-val val-small">Azure連携パートナー</div>
+    </div>
+  </div>
+  <div class="insight-box">
+    <div class="insight-text">💡 <strong>戦略の核心:</strong> NVIDIAはロボティクス企業への出資だけでなく、Isaac Lab・Cosmos・Omniverse等の「ロボット訓練基盤」を無償公開し、投資先が依存するエコシステムを構築。ロボット1台が動くたびにNVIDIA GPUが使われる仕組みを作っている。</div>
+  </div>
+</div>
+
+<!-- HEALTH PANEL -->
+<div class="panel2" id="p-health">
+  <div class="nvid-center">
+    <div class="nvid-center-name">NVIDIA BioNeMo / Clara / Isaac for Healthcare</div>
+    <div class="nvid-center-sub">ゲノミクス・創薬・医療画像・手術ロボットを支える計算基盤</div>
+  </div>
+  <div class="arrow-down">↓↓↓</div>
+  <div class="section-label">AIドラッグディスカバリー（創薬）</div>
+  <div class="flow-row cols4">
+    <div class="fcard" onclick="sendPrompt('Genesis TherapeuticsとNVIDIAの関係を詳しく教えて')">
+      <div class="fcard-head">Genesis Therapeutics</div>
+      <div class="fcard-body">AI創薬プラットフォーム。深層学習+分子シミュレーション</div>
+      <div class="fcard-val val-mid">NVentures中核投資</div>
+    </div>
+    <div class="fcard" onclick="sendPrompt('Terray TherapeuticsとNVIDIAの関係を詳しく教えて')">
+      <div class="fcard-head">Terray Therapeutics</div>
+      <div class="fcard-body">ターゲット構造モデリングで化合物候補を特定</div>
+      <div class="fcard-val val-mid">Madrona共同投資</div>
+    </div>
+    <div class="fcard" onclick="sendPrompt('Charm TherapeuticsとNVIDIAの関係を詳しく教えて')">
+      <div class="fcard-head">Charm Therapeutics</div>
+      <div class="fcard-body">英バイオテック 2023に$20M→2025に$80M追加</div>
+      <div class="fcard-val val-mid">$100M累計</div>
+    </div>
+    <div class="fcard" onclick="sendPrompt('EvozineとNVIDIAの関係を詳しく教えて')">
+      <div class="fcard-head">Evozyne</div>
+      <div class="fcard-body">生成AIで難易度の高いタンパク質を設計</div>
+      <div class="fcard-val val-small">NVentures直接</div>
+    </div>
+  </div>
+  <div class="section-label">タンパク質・ゲノミクス・自動実験</div>
+  <div class="flow-row cols3">
+    <div class="fcard" onclick="sendPrompt('Generate BiomedicinesとNVIDIAの関係を詳しく教えて')">
+      <div class="fcard-head">Generate Biomedicines</div>
+      <div class="fcard-body">タンパク質生成AI。評価額$1B超で注目</div>
+      <div class="fcard-val val-large">評価$1B+ 注目銘柄</div>
+    </div>
+    <div class="fcard" onclick="sendPrompt('InceptiveとNVIDIAの関係を詳しく教えて')">
+      <div class="fcard-head">Inceptive</div>
+      <div class="fcard-body">RNA分子設計・生成AI。mRNA医薬品設計に応用</div>
+      <div class="fcard-val val-mid">NVentures投資先</div>
+    </div>
+    <div class="fcard" onclick="sendPrompt('Lila ScienceとNVIDIAの関係を詳しく教えて')">
+      <div class="fcard-head">Lila Science</div>
+      <div class="fcard-body">「自律実験室」。AI+ロボットで実験を自動化 $350M調達</div>
+      <div class="fcard-val val-large">最大$350M 2025最注目</div>
+    </div>
+  </div>
+  <div class="section-label">医療AI・手術ロボット・診断</div>
+  <div class="flow-row cols4">
+    <div class="fcard" onclick="sendPrompt('AbridgeとNVIDIAの関係を詳しく教えて')">
+      <div class="fcard-head">Abridge</div>
+      <div class="fcard-body">医師-患者会話をAIで自動カルテ化</div>
+      <div class="fcard-val val-mid">NVentures</div>
+    </div>
+    <div class="fcard" onclick="sendPrompt('FlywheelとNVIDIAの関係を詳しく教えて')">
+      <div class="fcard-head">Flywheel</div>
+      <div class="fcard-body">大規模医療画像データ管理・分析基盤</div>
+      <div class="fcard-val val-mid">NVentures</div>
+    </div>
+    <div class="fcard" onclick="sendPrompt('Moon SurgicalとNVIDIAの関係を詳しく教えて')">
+      <div class="fcard-head">Moon Surgical</div>
+      <div class="fcard-body">仏米 Maestro手術支援ロボットアシスタント</div>
+      <div class="fcard-val val-small">NVentures</div>
+    </div>
+    <div class="fcard" onclick="sendPrompt('NeocisとNVIDIAの関係を詳しく教えて')">
+      <div class="fcard-head">Neocis</div>
+      <div class="fcard-body">歯科インプラント向けYomi手術ロボット</div>
+      <div class="fcard-val val-small">NVentures</div>
+    </div>
+  </div>
+  <div class="insight-box">
+    <div class="insight-text">💡 <strong>戦略の核心:</strong> 創薬・ゲノミクス・医療画像はすべて巨大な計算需要を生む。NVIDIAはBioNeMoという生命科学特化のAIプラットフォームを提供しつつ、そこを使う有望企業に出資 → エコシステム固定化を図っている。</div>
+  </div>
+</div>
+
+<!-- FUTURE PANEL -->
+<div class="panel2" id="p-future">
+  <div class="nvid-center">
+    <div class="nvid-center-name">NVIDIA の「次の計算時代」への賭け</div>
+    <div class="nvid-center-sub">量子・核融合・EDA・エネルギー — GPUだけに依存しない未来への布石</div>
+  </div>
+  <div class="arrow-down">↓↓↓</div>
+  <div class="section-label">量子コンピューティング</div>
+  <div class="flow-row cols2">
+    <div class="fcard" onclick="sendPrompt('QuantinuumとNVIDIAの関係を詳しく教えて')">
+      <div class="fcard-head">Quantinuum</div>
+      <div class="fcard-body">英国量子コンピュータ企業。2025年9月資金調達でNVIDIA参加</div>
+      <div class="fcard-val val-large">評価額 $10B</div>
+    </div>
+    <div class="fcard" onclick="sendPrompt('Sandbox AQとNVIDIAの関係を詳しく教えて')">
+      <div class="fcard-head">Sandbox AQ</div>
+      <div class="fcard-body">量子数値モデル(LQM)で複雑な数値解析。Google・BNPと共同投資</div>
+      <div class="fcard-val val-mid">調達 $150M</div>
+    </div>
+  </div>
+  <div class="section-label">核融合・次世代エネルギー</div>
+  <div class="flow-row cols2">
+    <div class="fcard" onclick="sendPrompt('Commonwealth FusionとNVIDIAの関係を詳しく教えて')">
+      <div class="fcard-head">Commonwealth Fusion Systems</div>
+      <div class="fcard-body">MIT発の核融合スタートアップ。AI計算でプラズマ制御</div>
+      <div class="fcard-val val-large">調達 $863M 評価$3B</div>
+    </div>
+    <div class="fcard" onclick="sendPrompt('Redwood MaterialsとNVIDIAの関係を詳しく教えて')">
+      <div class="fcard-head">Redwood Materials</div>
+      <div class="fcard-body">Tesla共同創業者JB Straubel創業。EV電池リサイクルでAI計算需要を支える</div>
+      <div class="fcard-val val-mid">NVentures投資先</div>
+    </div>
+  </div>
+  <div class="section-label">半導体設計・EDA・製造</div>
+  <div class="flow-row cols3">
+    <div class="fcard" onclick="sendPrompt('NVIDIAのIntel投資の戦略的意味を詳しく教えて')">
+      <div class="fcard-head">Intel</div>
+      <div class="fcard-body">約4%株主 $7.9B。IntelファブでNVIDIA向けx86 CPU製造契約</div>
+      <div class="fcard-val val-mega">$7.9B ポートフォリオ最大</div>
+    </div>
+    <div class="fcard" onclick="sendPrompt('NVIDIAのSynopsys投資の戦略的意味を詳しく教えて')">
+      <div class="fcard-head">Synopsys</div>
+      <div class="fcard-body">EDA(電子設計自動化)世界最大手。AIチップ設計の根幹ツール</div>
+      <div class="fcard-val val-large">上場株式保有</div>
+    </div>
+    <div class="fcard" onclick="sendPrompt('NVIDIAのNokia投資の戦略的意味を詳しく教えて')">
+      <div class="fcard-head">Nokia</div>
+      <div class="fcard-body">次世代ネットワーク。AIデータセンター間通信基盤</div>
+      <div class="fcard-val val-large">上場株式保有</div>
+    </div>
+  </div>
+  <div class="insight-box">
+    <div class="insight-text">💡 <strong>戦略の核心:</strong> AIの計算需要はいずれ現在のGPUの限界に達する。核融合(電力)・量子(次世代演算)・EDA(チップ設計ツール)への投資は、NVIDIA自身が「GPUの次の時代」に備えていることを示している。</div>
+  </div>
+</div>
+</div>
+<script>
+function switchTab(id, btn) {
+  document.querySelectorAll('.panel2').forEach(p => p.classList.remove('show'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('p-' + id).classList.add('show');
+  btn.classList.add('active');
+}
+</script>

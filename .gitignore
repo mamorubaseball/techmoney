@@ -1,0 +1,11 @@
+# 動画ファイル
+*.mp4
+*.mov
+*.avi
+
+# macOS
+.DS_Store
+
+# 一時ファイル
+.tmp.drivedownload/
+.tmp.driveupload/

@@ -1,0 +1,131 @@
+
+<style>
+.sr-only2{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
+.fw-wrap{padding:16px 0;font-family:var(--font-sans)}
+.fw-head{font-size:16px;font-weight:500;color:var(--color-text-primary);margin-bottom:2px}
+.fw-sub{font-size:12px;color:var(--color-text-secondary);margin-bottom:16px}
+.strategy-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px}
+.strategy-card{background:var(--color-background-secondary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:14px}
+.strategy-num{font-size:28px;font-weight:500;color:var(--color-text-tertiary);line-height:1}
+.strategy-title{font-size:13px;font-weight:500;color:var(--color-text-primary);margin:6px 0 4px}
+.strategy-body{font-size:12px;color:var(--color-text-secondary);line-height:1.5}
+.strategy-ex{font-size:11px;color:var(--color-text-tertiary);margin-top:6px;padding-top:6px;border-top:0.5px solid var(--color-border-tertiary)}
+.timeline{margin-top:4px}
+.tl-title{font-size:13px;font-weight:500;color:var(--color-text-primary);margin-bottom:12px}
+.tl-row{display:flex;gap:0;margin-bottom:0}
+.tl-year{min-width:46px;font-size:11px;font-weight:500;color:var(--color-text-secondary);padding-top:8px;text-align:right;padding-right:12px}
+.tl-line{display:flex;flex-direction:column;align-items:center;padding:0 8px}
+.tl-dot{width:10px;height:10px;border-radius:50%;margin-top:10px;flex-shrink:0}
+.tl-bar{width:1px;background:var(--color-border-secondary);flex:1;min-height:24px}
+.tl-content{flex:1;padding:6px 0 12px}
+.tl-event{font-size:12px;color:var(--color-text-primary);font-weight:500}
+.tl-detail{font-size:11px;color:var(--color-text-secondary);line-height:1.4;margin-top:2px}
+.dot-green{background:#1D9E75}
+.dot-blue{background:#185FA5}
+.dot-coral{background:#D85A30}
+.dot-purple{background:#7F77DD}
+.dot-amber{background:#BA7517}
+.insights-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:16px}
+.insight-card{padding:12px;border-radius:var(--border-radius-md);border:0.5px solid var(--color-border-tertiary)}
+.insight-icon{font-size:20px;margin-bottom:6px}
+.insight-title{font-size:12px;font-weight:500;color:var(--color-text-primary);margin-bottom:4px}
+.insight-text2{font-size:11px;color:var(--color-text-secondary);line-height:1.4}
+.num-highlight{font-size:20px;font-weight:500;color:var(--color-text-primary)}
+</style>
+<div class="fw-wrap">
+<h2 class="sr-only2">NVIDIAの投資戦略 — フライホイール構造と時系列分析</h2>
+<div class="fw-head">NVIDIA投資戦略 — なぜこの企業に投資するのか</div>
+<div class="fw-sub">3つの投資チャンネルと「自己強化するフライホイール」の構造</div>
+
+<div class="strategy-grid">
+  <div class="strategy-card">
+    <div class="strategy-num">01</div>
+    <div class="strategy-title">GPUの重力を作る</div>
+    <div class="strategy-body">投資先がGPUを大量使用する事業を展開することで、NVIDIA製品への需要を確実に創出。投資リターンと売上が同時に成立する。</div>
+    <div class="strategy-ex">例: CoreWeave(GPUクラウド)、Lambda Labs、Nscale → 投資しながらGPUを大量購入させる</div>
+  </div>
+  <div class="strategy-card">
+    <div class="strategy-num">02</div>
+    <div class="strategy-title">スタック全体を押さえる</div>
+    <div class="strategy-body">モデル(OpenAI/Anthropic)→インフラ(CoreWeave)→データ(Scale AI)→アプリ(Cursor)と、AIスタック全層に投資。競合が入れない「NVIDIA経済圏」を構築。</div>
+    <div class="strategy-ex">例: Anthropicは$10B投資+$30B Azure支出を約束 → GPU購入が確定</div>
+  </div>
+  <div class="strategy-card">
+    <div class="strategy-num">03</div>
+    <div class="strategy-title">次の計算時代への保険</div>
+    <div class="strategy-body">量子コンピュータ・核融合エネルギー・EDAツールへの投資は、GPU時代の次に備えた布石。現時点では財務的リターンより戦略的オプション価値が高い。</div>
+    <div class="strategy-ex">例: Quantinuum(量子)、Commonwealth Fusion(核融合)、Intel連携</div>
+  </div>
+  <div class="strategy-card">
+    <div class="strategy-num">04</div>
+    <div class="strategy-title">エコシステムを無料で育てる</div>
+    <div class="strategy-body">NVIDIAはNVIDIA Inceptionという無料プログラムで3万社超のスタートアップを支援。資金提供せず技術・クレジット提供だけで、全スタートアップをNVIDIA依存にする。</div>
+    <div class="strategy-ex">NVIDIA Inception: 30,000社+が参加 — 資本なしのエコシステム獲得</div>
+  </div>
+</div>
+
+<div class="timeline">
+  <div class="tl-title">投資活動の年次推移</div>
+  <div class="tl-row">
+    <div class="tl-year">2021-22</div>
+    <div class="tl-line"><div class="tl-dot dot-green"></div><div class="tl-bar"></div></div>
+    <div class="tl-content">
+      <div class="tl-event">投資黎明期 (数件)</div>
+      <div class="tl-detail">Inflection AI($1.3B)など初期AI投資。NVenturesはほぼゼロ</div>
+    </div>
+  </div>
+  <div class="tl-row">
+    <div class="tl-year">2023</div>
+    <div class="tl-line"><div class="tl-dot dot-blue"></div><div class="tl-bar"></div></div>
+    <div class="tl-content">
+      <div class="tl-event">ChatGPT革命後の急加速</div>
+      <div class="tl-detail">投資件数が2022年比3倍に。Figure AI、Cohere、SoundHound等に本格参入。NVenturesをVC組織として本格稼働</div>
+    </div>
+  </div>
+  <div class="tl-row">
+    <div class="tl-year">2024</div>
+    <div class="tl-line"><div class="tl-dot dot-coral"></div><div class="tl-bar"></div></div>
+    <div class="tl-content">
+      <div class="tl-event">54件のVC投資、戦略的大型案件</div>
+      <div class="tl-detail">OpenAI($100M)、Scale AI($1B)、Wayve($1.05B)、Mistral Series B。欧州投資が7件に増加。13F申告でArm・Applied Digital等株式保有が判明</div>
+    </div>
+  </div>
+  <div class="tl-row">
+    <div class="tl-year">2025</div>
+    <div class="tl-line"><div class="tl-dot dot-purple"></div><div class="tl-bar"></div></div>
+    <div class="tl-content">
+      <div class="tl-event">67件/年 — 過去最高ペース更新</div>
+      <div class="tl-detail">Anthropic最大$10B、Cursor $2.3B、xAI $6B、Reflection AI $2B、Figure $1B+。欧州14件(前年比2倍)。NVentures単独でも30件。Intel株$7.9Bの大型戦略株式保有</div>
+    </div>
+  </div>
+  <div class="tl-row">
+    <div class="tl-year">2026→</div>
+    <div class="tl-line"><div class="tl-dot dot-amber" style="border:2px dashed #BA7517;background:transparent"></div></div>
+    <div class="tl-content">
+      <div class="tl-event">Physical AI時代 — ロボット・医療に軸足</div>
+      <div class="tl-detail">2026年GTC発表: 産業ロボット・ヒューマノイド向けのCosmos 3・Isaac GR00TをOpenソース化。ハードウェア+ソフトウェア+投資の三位一体戦略を強化</div>
+    </div>
+  </div>
+</div>
+
+<div class="insights-grid">
+  <div class="insight-card">
+    <div class="insight-icon">📊</div>
+    <div class="insight-title">ポートフォリオ総額</div>
+    <div class="num-highlight">$13T+</div>
+    <div class="insight-text2">推定未実現利益は数兆円規模。IntelだけでTime of Reportで$7.9B</div>
+  </div>
+  <div class="insight-card">
+    <div class="insight-icon">🌍</div>
+    <div class="insight-title">地理的分散</div>
+    <div class="num-highlight">14カ国+</div>
+    <div class="insight-text2">米国中心だが欧州(英・仏)、イスラエル、ベトナム、アフリカまで拡大</div>
+  </div>
+  <div class="insight-card">
+    <div class="insight-icon">⚡</div>
+    <div class="insight-title">投資加速度</div>
+    <div class="num-highlight">3倍/年</div>
+    <div class="insight-text2">2022→2023年で3倍。2024→2025年も増加継続。NVenturesは30件/年へ</div>
+  </div>
+</div>
+</div>
