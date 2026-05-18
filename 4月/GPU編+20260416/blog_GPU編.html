@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AIチップ市場の地殻変動を徹底解剖。NVIDIAの独占は崩れるのか？Broadcom・Marvell・Cerebrasの投資チャンスを解説。">
+    <meta name="article-category" content="AI半導体">
+    <meta name="article-date" content="2026-04-16">
+    <meta name="article-ticker" content="NVDA,AVGO,MRVL,GOOGL,CBRS">
+    <title>GPU・TPU編 ― AIの頭脳をめぐる史上最大の半導体争奪戦 - TechMoney</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;800&family=Noto+Sans+JP:wght@300;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        *{box-sizing:border-box;margin:0;padding:0}
+        :root{--bg-dark:#050510;--bg-gradient:linear-gradient(180deg,#0a0a1a 0%,#050510 100%);--primary:#00f2fe;--secondary:#4facfe;--accent:#b06ab3;--text-main:#fff;--text-muted:#a0a0b0;--card-bg:rgba(255,255,255,.03);--card-border:rgba(255,255,255,.08)}
+        body{background-color:var(--bg-dark);background-image:var(--bg-gradient);color:var(--text-main);font-family:'Inter','Noto Sans JP',sans-serif;line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+        .container{max-width:1100px;margin:0 auto;padding:0 2rem}
+        header{padding:120px 0 80px;text-align:center}
+        h1{font-size:3rem;font-weight:900;letter-spacing:-.02em;margin-bottom:1rem;background:linear-gradient(135deg,var(--primary),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+        .subtitle{font-size:1.15rem;color:var(--text-muted)}
+        .toc{background:var(--card-bg);border:1px solid var(--card-border);border-radius:16px;padding:30px;margin-bottom:60px}
+        .toc h3{color:var(--primary);margin-bottom:14px;font-size:1.1rem}
+        .toc ul{list-style:none;padding:0}.toc li{margin-bottom:8px}
+        .toc a{color:var(--text-muted);text-decoration:none;transition:color .2s}.toc a:hover{color:var(--primary)}
+        section{margin-bottom:80px;animation:fadeInUp .6s ease both}
+        section:nth-child(2){animation-delay:.1s}section:nth-child(3){animation-delay:.2s}section:nth-child(4){animation-delay:.3s}
+        h2{font-size:1.8rem;font-weight:800;margin-bottom:20px;padding-left:16px;border-left:4px solid var(--primary)}
+        .card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:16px;padding:30px;margin-bottom:24px;backdrop-filter:blur(10px);transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease}
+        .card:hover{transform:translateY(-4px);box-shadow:0 12px 30px rgba(0,0,0,.4);border-color:rgba(0,242,254,.25)}
+        .card p{color:var(--text-muted);margin-bottom:14px}.card p:last-child{margin-bottom:0}
+        .ticker{color:var(--primary);font-weight:700}
+        .highlight{color:var(--primary);font-size:1.1em;font-weight:600}
+        .risk{background:rgba(255,100,100,.08);border-left:4px solid #ff6464;padding:20px 24px;border-radius:0 12px 12px 0;margin-top:20px}.risk p{color:#ffaaaa}
+        .stock-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;margin-top:20px}
+        .stock-card{background:rgba(255,255,255,.02);border:1px solid var(--card-border);border-radius:14px;padding:24px;transition:transform .3s,border-color .3s}
+        .stock-card:hover{transform:translateY(-3px);border-color:rgba(0,242,254,.3)}
+        .stock-card h3{color:var(--text-main);font-size:1.2rem;margin-bottom:10px}
+        .stock-card .type{font-size:.8rem;color:var(--accent);font-weight:600;margin-bottom:8px;text-transform:uppercase}
+        .stock-card p{color:var(--text-muted);font-size:.95rem}
+        footer{text-align:center;padding:60px 0;border-top:1px solid var(--card-border);margin-top:40px}
+        .disclaimer{color:var(--text-muted);font-size:.85rem;margin-bottom:8px}
+        .copyright{color:rgba(255,255,255,.3);font-size:.8rem}
+        @keyframes fadeInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+        @media(max-width:768px){h1{font-size:2rem}h2{font-size:1.4rem}header{padding:80px 0 50px}.container{padding:0 1rem}.card{padding:20px}.stock-grid{grid-template-columns:1fr}}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>GPU・TPU編</h1>
+            <p class="subtitle">AIの頭脳をめぐる史上最大の半導体争奪戦 ― 計算資源シリーズ Vol.2 | 2026.04.16</p>
+        </header>
+
+        <nav class="toc">
+            <h3>📑 目次</h3>
+            <ul>
+                <li><a href="#ch1">1. GPUとは何か？CPUとの決定的な違い</a></li>
+                <li><a href="#ch2">2. NVIDIA独占の終焉？カスタムチップの台頭</a></li>
+                <li><a href="#ch3">3. 注目銘柄 ― NVIDIA・Broadcom・Marvell・Cerebras</a></li>
+                <li><a href="#ch4">4. ETF戦略（SMH vs SOXX vs XSD）</a></li>
+            </ul>
+        </nav>
+
+        <main>
+            <section id="ch1">
+                <h2>GPUとは何か？CPUとの決定的な違い</h2>
+                <div class="card">
+                    <p>CPUは<strong>「一人の天才が順番に問題を解く」</strong>イメージ。対してGPUは<strong>「一万人の作業員が同時並行で単純作業をこなす」</strong>イメージです。AIの学習は膨大な数値計算を同時にこなす作業なので、GPUが圧倒的に向いています。</p>
+                </div>
+            </section>
+
+            <section id="ch2">
+                <h2>NVIDIA独占の終焉？カスタムチップの台頭</h2>
+                <div class="card">
+                    <p>NVIDIAは今もAIチップ市場の約<span class="highlight">80%</span>を握っています。しかし2つの大きな変化が押し寄せています。</p>
+                    <p><strong>① ビッグテックの自社チップ開発</strong>：GoogleやAmazonが「NVIDIAに依存したくない」と巨額投資を開始。<br>
+                    <strong>② カスタムチップ（ASIC）の急成長</strong>：GPUより速く、電力効率の高い専用チップがシェアを拡大。</p>
+                    <p>TrendForceによれば、AIサーバーに占めるGPUシェアは2025年の<span class="highlight">76%</span>から2026年には<span class="highlight">70%</span>に低下。一方カスタムチップは<span class="highlight">21%→28%</span>へ急拡大する見通しです。</p>
+                </div>
+            </section>
+
+            <section id="ch3">
+                <h2>注目銘柄 ― NVIDIA・Broadcom・Marvell・Cerebras</h2>
+                <div class="stock-grid">
+                    <div class="stock-card">
+                        <div class="type">👑 絶対王者</div>
+                        <h3><span class="ticker">NVDA</span> NVIDIA</h3>
+                        <p>AIチップの支配者。時価総額約<span class="highlight">4.6兆ドル</span>、PER約35倍。最大の強みはハードウェアではなく「CUDA」というソフトウェア基盤。世界中の開発者がCUDA上で開発しており、乗り換えコストが非常に高い。</p>
+                    </div>
+                    <div class="stock-card">
+                        <div class="type">🔧 カスタムチップの覇者</div>
+                        <h3><span class="ticker">AVGO</span> Broadcom</h3>
+                        <p>GoogleのTPU全7世代の設計パートナー。さらにOpenAI、Anthropic、Metaとも設計契約。カスタムチップ市場で<span class="highlight">60%</span>のシェアを狙う化け物企業。時価総額約1.8兆ドル、PER約38倍。</p>
+                    </div>
+                    <div class="stock-card">
+                        <div class="type">🚀 10倍株候補</div>
+                        <h3><span class="ticker">MRVL</span> Marvell Technology</h3>
+                        <p>NVIDIAが<span class="highlight">20億ドル</span>の戦略的出資。アナリスト目標株価は現在価格から<span class="highlight">+50%以上</span>の上値余地。2028年度データセンター収益は<span class="highlight">150億ドル</span>の自社予測。</p>
+                    </div>
+                    <div class="stock-card">
+                        <div class="type">⚡ IPO注目銘柄</div>
+                        <h3><span class="ticker">CBRS</span> Cerebras Systems</h3>
+                        <p>NVIDIAのH100の<span class="highlight">57倍</span>の大きさを持つ史上最大の単一プロセッサ「ウエハースケールエンジン」を開発。OpenAIと<span class="highlight">100億ドル</span>の計算資源供給契約。2026年春NASDAQ上場予定。</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="ch4">
+                <h2>ETF戦略（SMH vs SOXX vs XSD）</h2>
+                <div class="card">
+                    <p><strong>🔹 コア：</strong><span class="ticker">VOO</span> / <span class="ticker">SPY</span> でS&P500全体を押さえる</p>
+                    <p><strong>🔹 <span class="ticker">SMH</span>（集中型）：</strong>NVIDIAとTSMCの2社で約30%を占める。NVIDIAに強く賭けたいならSMH。</p>
+                    <p><strong>🔹 <span class="ticker">SOXX</span>（分散型）：</strong>NVIDIAの比率を8%以下に抑え、AMD・Micron・Broadcomなど幅広くカバー。</p>
+                    <p><strong>🔹 <span class="ticker">XSD</span>（中小型重視）：</strong>大型から中小型まで均等組入。Marvellなど中型銘柄の急騰をダイレクトに享受できる。</p>
+                </div>
+                <div class="risk">
+                    <p><strong>⚠️ リスク注意：</strong>半導体は景気サイクルの影響を受けやすく、地政学リスクも大きいセクターです。投資は必ず自己責任で判断してください。</p>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p class="disclaimer">※ 当記事は情報提供を目的としており、特定の銘柄の売買を推奨するものではありません。投資に関する最終的なご判断は、ご自身の責任でお願いいたします。</p>
+            <p class="copyright">© 2026 TechMoney</p>
+        </footer>
+    </div>
+</body>
+</html>

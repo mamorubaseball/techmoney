@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AIデータセンターのネットワークインフラ徹底解剖。Arista Networks、Credo Technology、NVIDIAのネットワーク事業を分析。計算資源シリーズ完結編。">
+    <meta name="article-category" content="AI半導体インフラ">
+    <meta name="article-date" content="2026-04-18">
+    <meta name="article-ticker" content="ANET,CRDO,NVDA,AVGO">
+    <title>ネットワーク編 ― AIを繋ぐ「神経系」の争奪戦 - TechMoney</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;800&family=Noto+Sans+JP:wght@300;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        *{box-sizing:border-box;margin:0;padding:0}:root{--bg-dark:#050510;--bg-gradient:linear-gradient(180deg,#0a0a1a 0%,#050510 100%);--primary:#00f2fe;--secondary:#4facfe;--accent:#b06ab3;--text-main:#fff;--text-muted:#a0a0b0;--card-bg:rgba(255,255,255,.03);--card-border:rgba(255,255,255,.08)}body{background-color:var(--bg-dark);background-image:var(--bg-gradient);color:var(--text-main);font-family:'Inter','Noto Sans JP',sans-serif;line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden}.container{max-width:1100px;margin:0 auto;padding:0 2rem}header{padding:120px 0 80px;text-align:center}h1{font-size:3rem;font-weight:900;letter-spacing:-.02em;margin-bottom:1rem;background:linear-gradient(135deg,var(--primary),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent}.subtitle{font-size:1.15rem;color:var(--text-muted)}.toc{background:var(--card-bg);border:1px solid var(--card-border);border-radius:16px;padding:30px;margin-bottom:60px}.toc h3{color:var(--primary);margin-bottom:14px;font-size:1.1rem}.toc ul{list-style:none;padding:0}.toc li{margin-bottom:8px}.toc a{color:var(--text-muted);text-decoration:none;transition:color .2s}.toc a:hover{color:var(--primary)}section{margin-bottom:80px;animation:fadeInUp .6s ease both}h2{font-size:1.8rem;font-weight:800;margin-bottom:20px;padding-left:16px;border-left:4px solid var(--primary)}.card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:16px;padding:30px;margin-bottom:24px;backdrop-filter:blur(10px);transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease}.card:hover{transform:translateY(-4px);box-shadow:0 12px 30px rgba(0,0,0,.4);border-color:rgba(0,242,254,.25)}.card p{color:var(--text-muted);margin-bottom:14px}.card p:last-child{margin-bottom:0}.ticker{color:var(--primary);font-weight:700}.highlight{color:var(--primary);font-size:1.1em;font-weight:600}.risk{background:rgba(255,100,100,.08);border-left:4px solid #ff6464;padding:20px 24px;border-radius:0 12px 12px 0;margin-top:20px}.risk p{color:#ffaaaa}.stock-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;margin-top:20px}.stock-card{background:rgba(255,255,255,.02);border:1px solid var(--card-border);border-radius:14px;padding:24px;transition:transform .3s,border-color .3s}.stock-card:hover{transform:translateY(-3px);border-color:rgba(0,242,254,.3)}.stock-card h3{color:var(--text-main);font-size:1.2rem;margin-bottom:10px}.stock-card .type{font-size:.8rem;color:var(--accent);font-weight:600;margin-bottom:8px;text-transform:uppercase}.stock-card p{color:var(--text-muted);font-size:.95rem}footer{text-align:center;padding:60px 0;border-top:1px solid var(--card-border);margin-top:40px}.disclaimer{color:var(--text-muted);font-size:.85rem;margin-bottom:8px}.copyright{color:rgba(255,255,255,.3);font-size:.8rem}@keyframes fadeInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}@media(max-width:768px){h1{font-size:2rem}h2{font-size:1.4rem}header{padding:80px 0 50px}.container{padding:0 1rem}.card{padding:20px}.stock-grid{grid-template-columns:1fr}}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>ネットワーク編</h1>
+            <p class="subtitle">AIを繋ぐ「神経系」の争奪戦 ― 計算資源シリーズ完結編 Vol.5 | 2026.04.18</p>
+        </header>
+        <nav class="toc">
+            <h3>📑 目次</h3>
+            <ul>
+                <li><a href="#ch1">1. なぜAIネットワークは普通のインターネットと違うのか</a></li>
+                <li><a href="#ch2">2. InfiniBandからEthernetへ ― 歴史的な技術転換</a></li>
+                <li><a href="#ch3">3. 注目銘柄 ― Arista・Credo・NVIDIA/Broadcom</a></li>
+                <li><a href="#ch4">4. シリーズ完結：AI計算資源5つの壁まとめ</a></li>
+            </ul>
+        </nav>
+        <main>
+            <section id="ch1">
+                <h2>なぜAIネットワークは普通のインターネットと違うのか</h2>
+                <div class="card">
+                    <p>普通のインターネットは「1台のパソコンが1つのサーバーに問い合わせる」通信。しかしAIの学習は、<strong>10万台のGPUが一斉に計算し、答えを1秒間に何百回も全GPUへ同時配信する</strong>。必要な帯域幅は普通のデータセンターの<span class="highlight">数百倍</span>、遅延は<span class="highlight">1マイクロ秒以下</span>が要求されます。</p>
+                    <p>わずかな通信の遅れがボトルネックになり、10万台のGPUがそのタイムラグを待ち続ける「渋滞」が発生してしまいます。</p>
+                </div>
+            </section>
+            <section id="ch2">
+                <h2>InfiniBandからEthernetへ ― 歴史的な技術転換</h2>
+                <div class="card">
+                    <p>2年前はAIバックエンドネットワークの約<span class="highlight">80%</span>がNVIDIA独自規格のInfiniBand。しかし2025年に転換点が訪れ、オープン規格の<strong>Ethernet</strong>がInfiniBandを追い抜き主流に。</p>
+                    <p>AIネットワーク市場は2025年の<span class="highlight">$153億</span>から2034年には<span class="highlight">$1,924億</span>へ、年率<span class="highlight">32%</span>で成長予測。2028年までの累計市場規模は<span class="highlight">$1,200億</span>に達する見通し。</p>
+                </div>
+            </section>
+            <section id="ch3">
+                <h2>注目銘柄 ― Arista・Credo・NVIDIA/Broadcom</h2>
+                <div class="stock-grid">
+                    <div class="stock-card">
+                        <div class="type">🌐 Ethernetの新盟主</div>
+                        <h3><span class="ticker">ANET</span> Arista Networks</h3>
+                        <p>AIデータセンター向け高速Ethernetスイッチの世界的リーダー。ついにCiscoをシェアで追い抜く。2025年通期売上<span class="highlight">$90億</span>（前年比+29%）。</p>
+                        <p>2026年のAIネットワーキング向け売上目標<span class="highlight">$32.5億</span>（前年比ほぼ倍増）。独自ソフトウェア「EOS」がMicrosoft・Metaに深く組み込まれ、強力なロックイン効果。</p>
+                    </div>
+                    <div class="stock-card">
+                        <div class="type">🚀 10倍株候補</div>
+                        <h3><span class="ticker">CRDO</span> Credo Technology</h3>
+                        <p>「紫色のケーブル」としてAI業界で急速に有名に。アクティブ電気ケーブル（AEC）市場で<span class="highlight">約70%</span>のシェア。光ケーブルより安く、消費電力<span class="highlight">-50%</span>、信頼性<span class="highlight">1000倍</span>。</p>
+                        <p>800Gから1.6Tへの移行の恩恵を直撃。<span class="highlight">$7.5億</span>でDustPhotonicsを買収し光通信にも参入。バークレイズ・JPモルガン・ニーダムそろって「買い」推奨。</p>
+                    </div>
+                    <div class="stock-card">
+                        <div class="type">🏦 全方位の覇者</div>
+                        <h3><span class="ticker">NVDA</span> + <span class="ticker">AVGO</span></h3>
+                        <p>NVIDIAのネットワーキング部門は前年同期比<span class="highlight">+263%</span>。InfiniBand・Spectrum-X Ethernet・NVLinkと全規格を自前で保有。</p>
+                        <p>Broadcomは高速Ethernetスイッチングチップ市場で<span class="highlight">80%以上</span>のシェア。Arista含む全スイッチメーカーの「心臓部のチップ」を独占供給。</p>
+                    </div>
+                </div>
+            </section>
+            <section id="ch4">
+                <h2>シリーズ完結：AI計算資源5つの壁まとめ</h2>
+                <div class="card">
+                    <p>AIという新しい知性を動かすには、<strong>5つの計算資源がすべて揃わなければなりません。</strong></p>
+                    <p>🧠 <strong>頭脳</strong>：GPU・TPU（NVIDIA, Broadcom, Marvell）<br>
+                    💾 <strong>記憶</strong>：メモリ・ストレージ<br>
+                    ⚡ <strong>血液</strong>：電力<br>
+                    ❄️ <strong>体温調節</strong>：冷却（Vertiv, Modine, Eaton）<br>
+                    🔗 <strong>神経系</strong>：ネットワーク（Arista, Credo, Broadcom）</p>
+                    <p>この5つのどれかが欠ければ、AIは止まる。NVIDIAやMicrosoftの影に隠れながら、<strong>電力会社、冷却メーカー、メモリ企業、ネットワーク企業が静かに、しかし確実に利益を積み上げています。</strong></p>
+                </div>
+                <div class="risk">
+                    <p><strong>⚠️ リスク注意：</strong>AIブームが減速すれば関連株は大きく調整します。地政学リスク、半導体規制、金利動向など予期せぬ変数は常に存在します。投資は必ず自己責任で判断してください。</p>
+                </div>
+            </section>
+        </main>
+        <footer>
+            <p class="disclaimer">※ 当記事は情報提供を目的としており、特定の銘柄の売買を推奨するものではありません。投資に関する最終的なご判断は、ご自身の責任でお願いいたします。</p>
+            <p class="copyright">© 2026 TechMoney</p>
+        </footer>
+    </div>
+</body>
+</html>
