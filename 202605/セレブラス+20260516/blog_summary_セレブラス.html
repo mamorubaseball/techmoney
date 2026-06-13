@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cerebras 最新技術ブログ 要約レポート</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;800&family=Noto+Sans+JP:wght@300;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            background-color: #050510;
+            background-image: radial-gradient(circle at 15% 50%, rgba(0, 242, 254, 0.05), transparent 35%),
+                              radial-gradient(circle at 85% 30%, rgba(79, 172, 254, 0.05), transparent 35%);
+            color: #ffffff;
+            font-family: 'Inter', 'Noto Sans JP', sans-serif;
+            line-height: 1.7;
+            padding: 60px 20px;
+        }
+        .container { max-width: 1000px; margin: 0 auto; }
+        header { text-align: center; margin-bottom: 50px; }
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #00f2fe, #4facfe);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 900;
+        }
+        .subtitle { color: #a0a0b0; font-size: 1.1rem; }
+        
+        .overall-summary {
+            background: rgba(0, 242, 254, 0.05);
+            border-left: 4px solid #00f2fe;
+            padding: 25px 30px;
+            border-radius: 0 16px 16px 0;
+            margin-bottom: 50px;
+            font-size: 1.05rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        .overall-summary h3 {
+            color: #00f2fe;
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 25px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 35px 30px;
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+            border-color: rgba(0, 242, 254, 0.3);
+            background: rgba(255, 255, 255, 0.04);
+        }
+        
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 3px;
+            background: linear-gradient(90deg, #00f2fe, #4facfe);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .card:hover::before { opacity: 1; }
+
+        .card-number {
+            font-size: 4.5rem;
+            font-weight: 900;
+            color: rgba(255, 255, 255, 0.03);
+            line-height: 1;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            pointer-events: none;
+            transition: color 0.3s ease;
+        }
+        .card:hover .card-number {
+            color: rgba(0, 242, 254, 0.08);
+        }
+
+        h2 {
+            font-size: 1.35rem;
+            color: #ffffff;
+            font-weight: 700;
+            width: 85%;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+
+        .content { 
+            color: #b0b0c0; 
+            font-size: 1rem; 
+            margin-bottom: 25px; 
+            flex-grow: 1;
+        }
+        
+        .content strong {
+            color: #e0e0f0;
+        }
+
+        .link-wrapper {
+            margin-top: auto;
+        }
+
+        .link-btn {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(0, 242, 254, 0.08);
+            color: #00f2fe;
+            padding: 10px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: bold;
+            border: 1px solid rgba(0, 242, 254, 0.2);
+            transition: all 0.3s ease;
+        }
+        .link-btn:hover {
+            background: rgba(0, 242, 254, 0.2);
+            box-shadow: 0 4px 15px rgba(0, 242, 254, 0.25);
+            color: #ffffff;
+        }
+        .link-btn svg {
+            margin-right: 8px;
+            width: 16px;
+            height: 16px;
+        }
+
+        @media (min-width: 768px) {
+            .grid { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Cerebras 最新ブログ 要約レポート</h1>
+            <p class="subtitle">超高速推論がもたらすAIエコシステムと開発トレンドの最前線（全10記事）</p>
+        </header>
+
+        <div class="overall-summary">
+            <h3>💡 全体サマリー</h3>
+            <p>Cerebrasの現在の焦点は、単なる「チップのスペックアピール」から、<strong>「超高速な推論が実際のソフトウェア開発やAIエージェントのあり方をどう変えるか」</strong>へと移行しています。特に、「マルチエージェントの並列処理」や「UIデザイン・コーディングの爆速イテレーション」において、Cerebrasの圧倒的なトークン生成速度（1000〜3000 tokens/sec）が次世代AIインフラとして不可欠になりつつあります。</p>
+        </div>
+
+        <div class="grid">
+            <!-- Article 1 -->
+            <div class="card">
+                <span class="card-number">01</span>
+                <h2>Fast inference is going mainstream</h2>
+                <div class="content">
+                    <strong>要約:</strong> 超低遅延な推論はもはや差別化要因ではなく、AIアプリの「基盤」です。Cerebrasは最大15倍の推論速度を活かし、エージェント型フレームワークやコーディングツール、MCP連携へとエコシステムを急速に拡大させています。
+                </div>
+                <div class="link-wrapper">
+                    <a href="https://www.cerebras.ai/blog/ecosystem" target="_blank" class="link-btn">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                        記事を読む
+                    </a>
+                </div>
+            </div>
+
+            <!-- Article 2 -->
+            <div class="card">
+                <span class="card-number">02</span>
+                <h2>Why the AI Race Shifted to Speed</h2>
+                <div class="content">
+                    <strong>要約:</strong> 主要AIラボは「次世代モデルを開発するために最も高速なAIを使う」フェーズに入りました。これからは「賢さ」だけでなく「トークン生成速度」がプロダクトのリリース速度を直接決定づけます。
+                </div>
+                <div class="link-wrapper">
+                    <a href="https://www.cerebras.ai/blog/why-the-ai-race-shifted-to-speed" target="_blank" class="link-btn">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                        記事を読む
+                    </a>
+                </div>
+            </div>
+
+            <!-- Article 3 -->
+            <div class="card">
+                <span class="card-number">03</span>
+                <h2>Generating Beautiful UIs</h2>
+                <div class="content">
+                    <strong>要約:</strong> AIにデザインさせると「退屈なUI」になりがちですが、Cerebrasの超高速推論とshadcn/ui等を組み合わせることで、素早く小さな変更を繰り返す「爆速イテレーション」が可能になり、実用的なデザインが生み出せます。
+                </div>
+                <div class="link-wrapper">
+                    <a href="https://www.cerebras.ai/blog/generating-beautiful-uis" target="_blank" class="link-btn">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                        記事を読む
+                    </a>
+                </div>
+            </div>
+
+            <!-- Article 4 -->
+            <div class="card">
+                <span class="card-number">04</span>
+                <h2>Introducing Multi-LoRA on Cerebras Inference</h2>
+                <div class="content">
+                    <strong>要約:</strong> 1つのベースモデルで複数のLoRAアダプターを並行実行できる機能が公開。これにより、ユーザーや言語ごとにAIの振る舞いを瞬時に最適化・特化させることが低コストで可能になります。
+                </div>
+                <div class="link-wrapper">
+                    <a href="https://www.cerebras.ai/blog/introducing-multi-lora-on-cerebras-inference" target="_blank" class="link-btn">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                        記事を読む
+                    </a>
+                </div>
+            </div>
+
+            <!-- Article 5 -->
+            <div class="card">
+                <span class="card-number">05</span>
+                <h2>Case Study - Cognition x Cerebras</h2>
+                <div class="content">
+                    <strong>要約:</strong> AIコーディングツール「Windsurf」を開発するCognition社はCerebras環境を採用。モデル「SWE-1.6」はGPU比で最大5倍（約950 tokens/sec）で動作し、開発者の思考を妨げない速度を実現しています。
+                </div>
+                <div class="link-wrapper">
+                    <a href="https://www.cerebras.ai/blog/case-study-cognition-x-cerebras" target="_blank" class="link-btn">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                        記事を読む
+                    </a>
+                </div>
+            </div>
+
+            <!-- Article 6 -->
+            <div class="card">
+                <span class="card-number">06</span>
+                <h2>Figma - MultiAgents</h2>
+                <div class="content">
+                    <strong>要約:</strong> 単一のAIエージェントにWebサイトをFigmaで複製させるとコンテキスト溢れで失敗しますが、オーケストレーターがページごとにサブエージェントを並列起動することで、5分で完璧なクローンを作成できました。
+                </div>
+                <div class="link-wrapper">
+                    <a href="https://www.cerebras.ai/blog/figma-multiagents" target="_blank" class="link-btn">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                        記事を読む
+                    </a>
+                </div>
+            </div>
+
+            <!-- Article 7 -->
+            <div class="card">
+                <span class="card-number">07</span>
+                <h2>Lessons learned from building multi-agent workflows</h2>
+                <div class="content">
+                    <strong>要約:</strong> 単一エージェントの限界を突破するための5つの設計パターン（レストランの厨房風）を紹介。超高速推論を活用したマルチエージェントの検証と並行作業のベストプラクティスが学べます。
+                </div>
+                <div class="link-wrapper">
+                    <a href="https://www.cerebras.ai/blog/lessons-learned-from-building-multi-agent-workflows" target="_blank" class="link-btn">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                        記事を読む
+                    </a>
+                </div>
+            </div>
+
+            <!-- Article 8 -->
+            <div class="card">
+                <span class="card-number">08</span>
+                <h2>The Debate of MCP vs. CLI Centers on Speed</h2>
+                <div class="content">
+                    <strong>要約:</strong> Anthropic主導のMCPは安全ですが遅延が問題視されています。しかしCerebrasの超高速推論インフラがあれば、そのレイテンシのデメリットを吸収し、安全かつ高速なプロトコル運用が可能になります。
+                </div>
+                <div class="link-wrapper">
+                    <a href="https://www.cerebras.ai/blog/MCPvsCLI" target="_blank" class="link-btn">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                        記事を読む
+                    </a>
+                </div>
+            </div>
+
+            <!-- Article 9 -->
+            <div class="card">
+                <span class="card-number">09</span>
+                <h2>Partner Spotlight: Armis + Cerebras</h2>
+                <div class="content">
+                    <strong>要約:</strong> AIによる高速コーディング時代の脆弱性リスクに対し、Armisのセキュリティ基盤とCerebrasの高速AIを組み合わせ、ノイズを減らしつつリアルタイムで脆弱性を検知・修正する仕組みを提供します。
+                </div>
+                <div class="link-wrapper">
+                    <a href="https://www.cerebras.ai/blog/partner-spotlight-armis" target="_blank" class="link-btn">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                        記事を読む
+                    </a>
+                </div>
+            </div>
+
+            <!-- Article 10 -->
+            <div class="card">
+                <span class="card-number">10</span>
+                <h2>The GPU Is Being Split in Half</h2>
+                <div class="content">
+                    <strong>要約:</strong> LLM推論を「計算重視(Prefill)」と「メモリ重視(Decode)」の2段階に分割。AWS TrainiumとCerebras CS-3を連携させる「Disaggregated Inference（非集約型推論）」により遅延を解消しスループットを向上させます。
+                </div>
+                <div class="link-wrapper">
+                    <a href="https://www.cerebras.ai/blog/disaggregated-inference" target="_blank" class="link-btn">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                        記事を読む
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>

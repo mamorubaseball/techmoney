@@ -9,3 +9,11 @@
 # 一時ファイル
 .tmp.drivedownload/
 .tmp.driveupload/
+
+# 音声・圧縮・PDF抽出フォルダ
+*.wav
+*.zip
+converted_pdfs*/
+*converted_pdfs*/
+**/converted_pdfs*/
+

@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI覇権の地殻変動：Anthropicへの人材集中とxAIの崩壊</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Noto+Sans+JP:wght@400;700;900&family=Fira+Code:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #000000;
+            --card-bg: rgba(10, 10, 15, 0.6);
+            --text-main: #e0e0e0;
+            --text-muted: #888888;
+            --accent-blue: #00d2ff;
+            --accent-purple: #8a2be2;
+            --accent-magenta: #ff00ff;
+            --glow-blue: 0 0 15px rgba(0, 210, 255, 0.6);
+            --glow-purple: 0 0 15px rgba(138, 43, 226, 0.6);
+        }
+        
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Noto Sans JP', 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.7;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(0, 210, 255, 0.05), transparent 30%),
+                radial-gradient(circle at 90% 80%, rgba(138, 43, 226, 0.05), transparent 30%);
+            background-attachment: fixed;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+            padding: 50px 20px;
+            background: linear-gradient(180deg, rgba(0,210,255,0.08) 0%, rgba(0,0,0,0) 100%);
+            border-bottom: 1px solid rgba(0, 210, 255, 0.15);
+            border-radius: 0 0 20px 20px;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 900;
+            background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+            text-shadow: var(--glow-blue);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .section {
+            margin-bottom: 60px;
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 40px;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+            transition: all 0.3s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0, 210, 255, 0.3);
+            box-shadow: var(--glow-blue);
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            color: #ffffff;
+            border-left: 4px solid var(--accent-blue);
+            padding-left: 15px;
+            margin-top: 0;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+        }
+
+        .highlight {
+            color: var(--accent-blue);
+            font-weight: 700;
+            text-shadow: 0 0 8px rgba(0, 210, 255, 0.4);
+        }
+
+        .dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+        }
+
+        .widget {
+            background: rgba(0, 0, 0, 0.7);
+            border: 1px solid rgba(138, 43, 226, 0.3);
+            border-radius: 12px;
+            padding: 30px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
+        }
+
+        .widget::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent-blue), transparent);
+        }
+
+        .widget-value {
+            font-family: 'Fira Code', monospace;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent-magenta);
+            text-shadow: 0 0 12px rgba(255, 0, 255, 0.5);
+            margin: 15px 0;
+        }
+
+        .widget-label {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .profile-card {
+            background: rgba(255, 255, 255, 0.02);
+            border-left: 2px solid var(--accent-purple);
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 0 8px 8px 0;
+            transition: background 0.2s;
+        }
+
+        .profile-card:hover {
+            background: rgba(138, 43, 226, 0.05);
+        }
+
+        .profile-name {
+            font-size: 1.4rem;
+            color: #ffffff;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .profile-path {
+            font-family: 'Fira Code', monospace;
+            color: var(--accent-blue);
+            font-size: 0.9rem;
+            margin-bottom: 12px;
+            background: rgba(0, 210, 255, 0.1);
+            padding: 4px 10px;
+            border-radius: 4px;
+            display: inline-block;
+        }
+
+        .ranking-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .ranking-item {
+            display: flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .ranking-item:hover {
+            border-color: rgba(138, 43, 226, 0.5);
+            background: rgba(138, 43, 226, 0.08);
+            transform: translateX(10px);
+        }
+
+        .rank-num {
+            font-family: 'Fira Code', monospace;
+            font-size: 2.5rem;
+            color: var(--accent-purple);
+            font-weight: 900;
+            margin-right: 25px;
+            width: 50px;
+            text-align: center;
+            text-shadow: var(--glow-purple);
+        }
+
+        .rank-content h3 {
+            margin: 0 0 8px 0;
+            color: #ffffff;
+            font-size: 1.5rem;
+        }
+
+        .rank-content p {
+            margin: 0;
+            font-size: 1rem;
+            color: var(--text-muted);
+        }
+
+        .warning-box {
+            border-left: 4px solid #ff0055;
+            background: rgba(255, 0, 85, 0.05);
+            padding: 20px 25px;
+            border-radius: 0 8px 8px 0;
+            margin: 40px 0 0 0;
+            font-size: 0.95rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>AI覇権の地殻変動</h1>
+            <p class="subtitle">Anthropicへの人材集中とxAIの崩壊</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- 第1章 -->
+        <section class="section">
+            <h2>01. AI人材移動の全体像と背景</h2>
+            <p>現在のAI業界は、優秀な研究者や幹部をめぐって空前絶後の争奪戦が繰り広げられています。AIのフロンティアを動かせる研究者は世界に数百人しか存在しない極めて稀少な存在です。OpenAI、Anthropic、Meta、Google DeepMindなどのトップ自らがリクルートに乗り出しています。</p>
+            
+            <div class="dashboard">
+                <div class="widget">
+                    <div class="widget-label">Top Researcher Compensation</div>
+                    <div class="widget-value">¥100M+</div>
+                    <div class="widget-label">一億円超の報酬パッケージ</div>
+                </div>
+                <div class="widget">
+                    <div class="widget-label">Key Market Trend</div>
+                    <div class="widget-value">SHIFT</div>
+                    <div class="widget-label">激しい人材の流動化</div>
+                </div>
+            </div>
+            
+            <p>この争奪戦の中で、特に劇的な動きが以下の3点です：</p>
+            <ul>
+                <li><span class="highlight">Anthropic</span>への劇的な人材集中</li>
+                <li><span class="highlight">xAI</span>の崩壊と大量離脱</li>
+                <li>元テスラ・元xAI人材の<span class="highlight">Anthropic</span>への流入</li>
+            </ul>
+        </section>
+
+        <!-- 第2章 -->
+        <section class="section">
+            <h2>02. テスラ・xAIから流出した主要人物の行き先</h2>
+            <p>2026年2月、SpaceXがxAIを巨額で買収する史上最大規模の合併が成立しました。しかし、マイルストーン重視のエンジニアリング文化と研究志向のxAI文化が激しく衝突し、内部で連鎖的な離脱が始まりました。</p>
+            
+            <div class="dashboard">
+                <div class="widget">
+                    <div class="widget-label">xAI Acquisition Value</div>
+                    <div class="widget-value">$250B</div>
+                    <div class="widget-label">約38兆円規模の買収額</div>
+                </div>
+                <div class="widget">
+                    <div class="widget-label">Co-founders Departure</div>
+                    <div class="widget-value">11 / 11</div>
+                    <div class="widget-label">全共同創業者が離脱</div>
+                </div>
+                <div class="widget">
+                    <div class="widget-label">Engineers Exodus</div>
+                    <div class="widget-value">80+</div>
+                    <div class="widget-label">研究者・エンジニアの離脱</div>
+                </div>
+            </div>
+
+            <p>マスク氏自身が「<span class="highlight">xAIは最初から正しく作られていなかったので、根本から作り直している</span>」と異例の発言をするほど、深刻な状況に陥っています。この離脱者の一部がAnthropicへ流入しています。</p>
+        </section>
+
+        <!-- 第3章 -->
+        <section class="section">
+            <h2>03. Anthropicに集結した精鋭たちの経歴</h2>
+            <p>現在、Anthropicは「OpenAI出身」「テスラ出身」「xAI出身」の研究者が一堂に会する、AI業界のドリームチームとなっています。企業評価額も一千八百三十億ドル（約27兆円規模）にまで急成長しています。</p>
+
+            <div class="profile-card">
+                <div class="profile-name">Andrej Karpathy</div>
+                <div class="profile-path">OpenAI ➔ Tesla ➔ Eureka Labs ➔ Anthropic</div>
+                <p>現代のAI業界で最も影響力のある研究者の一人。Claudeの事前学習の研究チームをゼロから立ち上げるため2026年5月に入社。</p>
+            </div>
+            
+            <div class="profile-card">
+                <div class="profile-name">John Schulman</div>
+                <div class="profile-path">OpenAI ➔ Anthropic (Thinking Machines Lab兼務)</div>
+                <p>強化学習の分野で革新的な手法PPOを開発した第一人者。</p>
+            </div>
+
+            <div class="profile-card">
+                <div class="profile-name">Ross Nordeen</div>
+                <div class="profile-path">Tesla ➔ xAI ➔ Anthropic</div>
+                <p>xAIの共同創業者であったが、2026年5月にAnthropicへの入社を発表。人材移動を象徴するキャリアパス。</p>
+            </div>
+
+            <div class="profile-card">
+                <div class="profile-name">Dario Amodei (CEO)</div>
+                <div class="profile-path">OpenAI ➔ Anthropic</div>
+                <p>元OpenAIの研究責任者。妹のDanielaら元OpenAI精鋭メンバーと共にAnthropicを創業。</p>
+            </div>
+        </section>
+
+        <!-- 第4章 -->
+        <section class="section">
+            <h2>04. 最注目企業ランキングと今後の展望</h2>
+            <p>今回の人材大移動を踏まえた、次世代AI覇権を握る最注目企業ランキングです。</p>
+
+            <ul class="ranking-list">
+                <li class="ranking-item">
+                    <div class="rank-num">01</div>
+                    <div class="rank-content">
+                        <h3>Anthropic</h3>
+                        <p>圧倒的な人材の厚み。さらに、マスク氏のxAI/SpaceXが持つ22万基以上のGPUデータセンター「Colossus」を使用する契約を結び、計算リソースも確保。</p>
+                    </div>
+                </li>
+                <li class="ranking-item">
+                    <div class="rank-num">02</div>
+                    <div class="rank-content">
+                        <h3>Safe Superintelligence (SSI)</h3>
+                        <p>Ilya Sutskever氏（元OpenAI主任科学者）が設立。「安全な超知能の開発」に特化。製品未発表ながら評価額は約320億ドル（約4.7兆円）。</p>
+                    </div>
+                </li>
+                <li class="ranking-item">
+                    <div class="rank-num">03</div>
+                    <div class="rank-content">
+                        <h3>Thinking Machines Lab</h3>
+                        <p>Mira Murati氏（元OpenAI CTO）が2025年に創業。約200億ドル（約2.9兆円）のシード調達を実施したが、今後の安定性は注視が必要。</p>
+                    </div>
+                </li>
+            </ul>
+        </section>
+
+        <!-- まとめ -->
+        <section class="section">
+            <h2>05. 結論</h2>
+            <p>この人材の流れは単なる人事ニュースではありません。「<span class="highlight">誰が次世代AIの覇権を握るか</span>」という問いへの答えが、静かに形になってきている瞬間です。タレント、計算リソース、評価額の三拍子が揃ったAnthropicが頭一つ抜け出している一方、かつて強大だったxAIは大きな岐路に立たされています。</p>
+            
+            <div class="warning-box">
+                <strong>免責事項・ご注意：</strong><br>
+                本レポートで言及されている企業の動向や評価額等のデータはあくまで参考情報です。投資や事業判断はご自身でしっかり調査・検討のうえ、自己責任でお願いいたします。
+            </div>
+        </section>
+    </div>
+</body>
+</html>

@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="ドローン株の本当の仕込みどきは「戦争中」でも「戦争直後」でもなく、心理的平時の今。米国ドローン銘柄AVAV・KTOS・RCATを大型・中型・小型に分けて徹底解剖します。">
+  <title>今が仕込みどき｜誰も注目しない今こそ買う米国ドローン株3選【AVAV・KTOS・RCAT】 - TechMoney</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;800&family=Noto+Sans+JP:wght@300;500;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #050510;
+      --bg-gradient: linear-gradient(180deg, #0a0a1a 0%, #050510 100%);
+      --primary: #00f2fe;
+      --secondary: #4facfe;
+      --accent: #b06ab3;
+      --text-main: #ffffff;
+      --text-muted: #a0a0b0;
+      --card-bg: rgba(255, 255, 255, 0.03);
+      --card-border: rgba(255, 255, 255, 0.08);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg-gradient);
+      min-height: 100vh;
+      color: var(--text-muted);
+      font-family: 'Inter', 'Noto Sans JP', sans-serif;
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+
+    /* ─── Container ─── */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* ─── Animations ─── */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes gradientShift {
+      0%   { background-position: 0% 50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* ─── Header ─── */
+    header {
+      padding: 120px 0 80px;
+      text-align: center;
+      animation: fadeInUp 0.8s ease both;
+    }
+
+    .tag-line {
+      display: inline-block;
+      background: linear-gradient(135deg, rgba(0,242,254,0.15), rgba(176,106,179,0.15));
+      border: 1px solid rgba(0,242,254,0.3);
+      border-radius: 50px;
+      padding: 6px 20px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--primary);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+
+    h1 {
+      font-size: 3rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 50%, var(--accent) 100%);
+      background-size: 200% 200%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: gradientShift 5s ease infinite;
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+
+    .subtitle {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      margin-top: 16px;
+    }
+
+    .meta-info {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-top: 20px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .meta-info span {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* ─── Lead ─── */
+    .lead-section {
+      margin-bottom: 60px;
+      animation: fadeInUp 0.8s ease 0.2s both;
+    }
+
+    .lead-card {
+      background: linear-gradient(135deg, rgba(0,242,254,0.06), rgba(176,106,179,0.06));
+      border: 1px solid rgba(0,242,254,0.2);
+      border-radius: 20px;
+      padding: 40px;
+      text-align: center;
+    }
+
+    .lead-card p {
+      font-size: 1.15rem;
+      line-height: 1.85;
+      color: var(--text-main);
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .lead-card .hook {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--primary);
+      display: block;
+      margin-bottom: 16px;
+    }
+
+    /* ─── Ticker Summary Cards ─── */
+    .ticker-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin: 48px 0;
+      animation: fadeInUp 0.8s ease 0.3s both;
+    }
+
+    .ticker-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 28px 24px;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .ticker-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+    }
+
+    .ticker-card.large::before  { background: linear-gradient(90deg, var(--primary), var(--secondary)); }
+    .ticker-card.mid::before    { background: linear-gradient(90deg, var(--secondary), var(--accent)); }
+    .ticker-card.small::before  { background: linear-gradient(90deg, var(--accent), #ff6b6b); }
+
+    .ticker-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+      border-color: rgba(0, 242, 254, 0.25);
+    }
+
+    .ticker-badge {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 50px;
+      margin-bottom: 12px;
+      display: inline-block;
+    }
+
+    .large .ticker-badge  { background: rgba(0,242,254,0.12); color: var(--primary); }
+    .mid .ticker-badge    { background: rgba(79,172,254,0.12); color: var(--secondary); }
+    .small .ticker-badge  { background: rgba(176,106,179,0.12); color: var(--accent); }
+
+    .ticker-symbol {
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--text-main);
+      margin-bottom: 6px;
+    }
+
+    .ticker-name {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .ticker-role {
+      margin-top: 14px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    /* ─── TOC ─── */
+    nav.toc {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 32px 36px;
+      margin-bottom: 80px;
+      animation: fadeInUp 0.8s ease 0.4s both;
+    }
+
+    nav.toc h2 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--primary);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      border: none;
+      padding: 0;
+    }
+
+    nav.toc ol {
+      list-style: none;
+      counter-reset: toc;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px 40px;
+    }
+
+    nav.toc li {
+      counter-increment: toc;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    nav.toc li::before {
+      content: counter(toc, decimal-leading-zero);
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--primary);
+      opacity: 0.7;
+      min-width: 24px;
+    }
+
+    nav.toc a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.2s;
+    }
+
+    nav.toc a:hover {
+      color: var(--primary);
+    }
+
+    /* ─── Sections ─── */
+    section {
+      margin-bottom: 80px;
+      animation: fadeInUp 0.8s ease both;
+    }
+
+    h2 {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--text-main);
+      border-left: 4px solid var(--primary);
+      padding-left: 20px;
+      margin-bottom: 28px;
+      line-height: 1.35;
+    }
+
+    h3 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin: 28px 0 12px;
+    }
+
+    /* ─── Cards ─── */
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 30px;
+      backdrop-filter: blur(10px);
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+      margin-bottom: 20px;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+      border-color: rgba(0, 242, 254, 0.25);
+    }
+
+    .card p {
+      margin-bottom: 16px;
+    }
+
+    .card p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* ─── Special Spans ─── */
+    .ticker {
+      color: var(--primary);
+      font-weight: 700;
+      font-family: 'Inter', monospace;
+    }
+
+    .highlight {
+      color: var(--primary);
+      font-size: 1.05em;
+      font-weight: 700;
+    }
+
+    /* ─── Metrics Grid ─── */
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin: 24px 0;
+    }
+
+    .metric-box {
+      background: rgba(0,242,254,0.05);
+      border: 1px solid rgba(0,242,254,0.15);
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .metric-value {
+      font-size: 1.8rem;
+      font-weight: 900;
+      color: var(--primary);
+      display: block;
+    }
+
+    .metric-label {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    /* ─── Strategy Box ─── */
+    .strategy-box {
+      background: linear-gradient(135deg, rgba(0,242,254,0.05), rgba(79,172,254,0.05));
+      border: 1px solid rgba(0,242,254,0.2);
+      border-radius: 16px;
+      padding: 32px;
+      margin: 24px 0;
+    }
+
+    .strategy-box p {
+      font-size: 1.05rem;
+      color: var(--text-main);
+      line-height: 1.8;
+    }
+
+    /* ─── Risk Box ─── */
+    .risk-box {
+      background: rgba(255, 100, 100, 0.07);
+      border-left: 4px solid #ff6464;
+      border-radius: 0 12px 12px 0;
+      padding: 20px 24px;
+      margin: 24px 0;
+    }
+
+    .risk-box p {
+      color: #ffaaaa;
+      font-size: 0.9rem;
+    }
+
+    /* ─── Summary Table ─── */
+    .summary-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 28px 0;
+      font-size: 0.9rem;
+    }
+
+    .summary-table th {
+      background: rgba(0,242,254,0.08);
+      color: var(--primary);
+      font-weight: 700;
+      padding: 14px 16px;
+      text-align: left;
+      border-bottom: 1px solid rgba(0,242,254,0.2);
+    }
+
+    .summary-table td {
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--card-border);
+      color: var(--text-muted);
+      vertical-align: top;
+    }
+
+    .summary-table tr:hover td {
+      background: rgba(0,242,254,0.03);
+    }
+
+    .role-tag {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 50px;
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+
+    .role-core   { background: rgba(0,242,254,0.12); color: var(--primary); }
+    .role-hybrid { background: rgba(79,172,254,0.12); color: var(--secondary); }
+    .role-alpha  { background: rgba(176,106,179,0.15); color: var(--accent); }
+
+    /* ─── Footer ─── */
+    footer {
+      border-top: 1px solid var(--card-border);
+      padding: 60px 0 40px;
+      text-align: center;
+    }
+
+    .disclaimer {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 20px 28px;
+      max-width: 700px;
+      margin: 0 auto 28px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    .copyright {
+      font-size: 0.8rem;
+      color: rgba(160,160,176,0.5);
+    }
+
+    /* ─── Responsive ─── */
+    @media (max-width: 768px) {
+      h1 { font-size: 2rem; }
+      h2 { font-size: 1.4rem; }
+      header { padding: 80px 0 50px; }
+      .container { padding: 0 1rem; }
+      .card { padding: 20px; }
+      .ticker-grid { grid-template-columns: 1fr; }
+      .metrics-grid { grid-template-columns: 1fr 1fr; }
+      nav.toc ol { grid-template-columns: 1fr; }
+      .summary-table { font-size: 0.8rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <!-- ════════ HEADER ════════ -->
+    <header>
+      <div class="tag-line">🚁 米国ドローン株 特集</div>
+      <h1>今が仕込みどき<br>誰も注目しない今こそ買う<br>米国ドローン株3選</h1>
+      <p class="subtitle">心理的平時の逆張り戦略｜<span class="ticker">AVAV</span> · <span class="ticker">KTOS</span> · <span class="ticker">RCAT</span> 徹底解剖</p>
+      <div class="meta-info">
+        <span>📅 2026年6月12日</span>
+        <span>✍️ TechMoney</span>
+        <span>🕐 約25分</span>
+      </div>
+    </header>
+
+    <!-- ════════ LEAD ════════ -->
+    <section class="lead-section">
+      <div class="lead-card">
+        <span class="hook">「防衛株は、戦争が起きたときに買うもの」──その常識が一番遅いタイミングです。</span>
+        <p>ドローン株の本当の仕込みどきは「戦争中」でも「戦争直後」でもなく、誰も話題にしなくなった今、つまり<strong>「心理的平時」のど真ん中</strong>です。センチメントとファンダメンタルズの乖離こそが、逆張り投資の絶好の入り口。静かに仕込んで、次の熱狂期に売り抜ける――それが今回お伝えしたいコアな戦略です。</p>
+      </div>
+
+      <!-- Ticker Summary Cards -->
+      <div class="ticker-grid">
+        <div class="ticker-card large">
+          <div class="ticker-badge">大型 · コア</div>
+          <div class="ticker-symbol">AVAV</div>
+          <div class="ticker-name">エアロヴァイロンメント</div>
+          <div class="ticker-role">守りの軸 · 高利益率</div>
+        </div>
+        <div class="ticker-card mid">
+          <div class="ticker-badge">中型 · ハイブリッド</div>
+          <div class="ticker-symbol">KTOS</div>
+          <div class="ticker-name">クラトス・ディフェンス</div>
+          <div class="ticker-role">安定 × 成長 · AI無人戦闘機</div>
+        </div>
+        <div class="ticker-card small">
+          <div class="ticker-badge">小型 · 爆発枠</div>
+          <div class="ticker-symbol">RCAT</div>
+          <div class="ticker-name">レッド・キャット</div>
+          <div class="ticker-role">大化け候補 · 国策追い風</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════ TOC ════════ -->
+    <nav class="toc" id="toc">
+      <h2>📋 目次</h2>
+      <ol>
+        <li><a href="#chapter-1">平和な時こそ仕込むドローン銘柄</a></li>
+        <li><a href="#chapter-2">大型：AVAV エアロヴァイロンメント</a></li>
+        <li><a href="#chapter-3">中型：KTOS クラトス・ディフェンス</a></li>
+        <li><a href="#chapter-4">小型：RCAT レッド・キャット</a></li>
+        <li><a href="#chapter-5">まとめと投資シナリオ</a></li>
+      </ol>
+    </nav>
+
+    <!-- ════════ MAIN ════════ -->
+    <main>
+
+      <!-- Chapter 1 -->
+      <section id="chapter-1">
+        <h2>第1章｜平和な時こそ仕込むドローン銘柄</h2>
+        <div class="card">
+          <p>ウクライナや中東で紛争が勃発したとき、ドローン銘柄の株価は一気に上昇しました。しかし今は？ 市場の関心は半導体やAIの方に向いていて、ドローン株はすっかり忘れられた存在になっています。株価もあの熱狂期から比べると調整が入っています。</p>
+          <p>しかし実態はどうかというと、水面下では米国防総省、つまりペンタゴンが<strong>「レプリケーター構想」</strong>という名のもとで、<span class="highlight">数万機規模</span>のAIドローンを大量調達する国策を着々と進めています。</p>
+        </div>
+        <div class="strategy-box">
+          <p>投資家が飽きてセンチメントが下がり、株価がダレているのに、実際の軍の調達はどんどん拡大している。この<strong>「センチメントとファンダメンタルズの乖離」</strong>こそが、逆張り投資の絶好の入り口です。大衆が熱狂しているとき、つまり戦争のニュースでメディアが騒いでいるときに買うのは、すでに遅い。静かに仕込んで、次の熱狂期に売り抜ける――これが今回のコアな戦略です。</p>
+        </div>
+      </section>
+
+      <!-- Chapter 2 -->
+      <section id="chapter-2">
+        <h2>第2章｜大型：<span class="ticker">AVAV</span> エアロヴァイロンメント</h2>
+
+        <div class="card">
+          <h3>🏆 防衛ドローン業界のガリバー</h3>
+          <p><span class="ticker">AVAV</span>はひと言で言うと、<strong>防衛ドローン業界のガリバー</strong>です。ウクライナの前線で実際に戦果を挙げた自爆型ドローン「スイッチブレード」シリーズの開発元で、米国防総省との取引実績は数十年にわたります。実戦の中で証明された製品を持っているというのは、それだけで圧倒的な競争優位です。</p>
+        </div>
+
+        <div class="metrics-grid">
+          <div class="metric-box">
+            <span class="metric-value">20〜30%</span>
+            <span class="metric-label">年間トップライン成長率</span>
+          </div>
+          <div class="metric-box">
+            <span class="metric-value">約40%</span>
+            <span class="metric-label">粗利益率（ハードウェア企業として優秀）</span>
+          </div>
+          <div class="metric-box">
+            <span class="metric-value">10〜15%</span>
+            <span class="metric-label">営業利益率（安定黒字）</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>🧠 GPS非依存の自律ターゲティング技術</h3>
+          <p>AVAVの本当の強みは、機体そのものよりも<strong>「GPS非依存の自律ターゲティング技術」</strong>にあります。現代の戦場では、ロシアや中国のような技術大国が強力な電子戦（ジャミング）でGPS信号を意図的に潰してきます。</p>
+          <p>AVAVのスイッチブレードはカメラとエッジAIを搭載していて、GPSが途絶しても地形や目標物を自動で認識し、自律的に突入するアルゴリズムを完成させています。さらにモジュール式のペイロード設計で、偵察用センサーと爆薬を戦況に応じて即座に付け替えられます。</p>
+        </div>
+
+        <div class="strategy-box">
+          <p>ポートフォリオの観点からすると、<span class="ticker">AVAV</span>はいわゆる<strong>「コア」に据えるべき銘柄</strong>です。急激な株価倍増は狙いにくいですが、米軍の予算がドローンにシフトし続ける限り、着実にEPS（一株あたり利益）を積み上げてくれる優良ディフェンス株。莫大な研究開発費をこなしながらもしっかりと黒字を出しているため、「資金ショート」や「増資による希薄化」リスクが極めて低いのも強みです。</p>
+        </div>
+      </section>
+
+      <!-- Chapter 3 -->
+      <section id="chapter-3">
+        <h2>第3章｜中型：<span class="ticker">KTOS</span> クラトス・ディフェンス</h2>
+
+        <div class="card">
+          <h3>🎯 標的機ビジネスが生んだキャッシュカウ</h3>
+          <p><span class="ticker">KTOS</span>は「標的機」の会社として知られています。軍のミサイル射撃訓練の的にされる無人機で、アメリカ国内でそのシェアの大半を握っています。一見地味に見えるこのビジネスが、<strong>安定したキャッシュカウ</strong>（現金を産み続ける事業）として機能し、そこで稼いだ利益を次世代の無人戦闘機の開発に投入しています。</p>
+          <p>その無人戦闘機こそが<strong>「XQ-58A ヴァルキリー」</strong>です。</p>
+        </div>
+
+        <div class="card">
+          <h3>✈️ AI僚機「ヴァルキリー」の革新性</h3>
+          <p>ヴァルキリーはAIによって自律飛行するステルス無人戦闘機で、米空軍が推進する<strong>「CCA（協調戦闘航空機）」</strong>構想の中核として位置づけられています。F-35のような有人戦闘機の隣を飛んで、AIが自ら判断して敵のレーダーを撹乱したり、ミサイルを代わりに撃ったりする「AI僚機」です。</p>
+          <p>さらに革命的な特徴が<strong>「滑走路不要」</strong>という点です。ヴァルキリーはロケットブースターで野原やトラックの荷台から打ち上げが可能です。中国との台湾有事を想定すると、真っ先に狙われるのがグアムや沖縄などの米軍基地の滑走路です。滑走路が破壊されても運用できるという点は、米空軍にとって絶対に外せない条件になっています。</p>
+        </div>
+
+        <div class="metrics-grid">
+          <div class="metric-box">
+            <span class="metric-value">25〜30%</span>
+            <span class="metric-label">粗利益率</span>
+          </div>
+          <div class="metric-box">
+            <span class="metric-value">一桁%台</span>
+            <span class="metric-label">営業利益率（先行投資中）</span>
+          </div>
+          <div class="metric-box">
+            <span class="metric-value">CCA</span>
+            <span class="metric-label">協調戦闘航空機プログラム参画</span>
+          </div>
+        </div>
+
+        <div class="strategy-box">
+          <p><span class="ticker">KTOS</span>は成長性と安定性を兼ね備えた<strong>「ハイブリッド」型銘柄</strong>です。CCAプログラムの予算執行やテスト成功のニュースが出るたびに株価が大きく動くカタリスト性があります。<span class="ticker">AVAV</span>よりも値動きが大きく、中間リスク・中間リターンを狙う位置づけの銘柄です。</p>
+        </div>
+      </section>
+
+      <!-- Chapter 4 -->
+      <section id="chapter-4">
+        <h2>第4章｜小型：<span class="ticker">RCAT</span> レッド・キャット・ホールディングス</h2>
+
+        <div class="card">
+          <h3>🦅 トランプ国策×AI×DJI禁止の三重追い風</h3>
+          <p><span class="ticker">RCAT</span>はひと言で言うと、<strong>トランプ政権の国策にド直球に乗っている「sUAS（小型無人機）×AI」のダークホース</strong>です。</p>
+          <p>トランプ政権は「アメリカ第一主義」のもと、米政府機関での中国製ドローン（DJI等）の使用をNDAA準拠で<strong>完全に禁止</strong>しました。代替供給を担えるのは、米国防総省の厳しいセキュリティ基準「<strong>Blue UAS</strong>」をクリアした数少ない米国企業のみ。RCATの傘下Teal（ティール）・ドローンズはその一つであり、競合不在のまま政府調達を一手に引き受けられるポジションにあります。</p>
+        </div>
+
+        <div class="metrics-grid">
+          <div class="metric-box">
+            <span class="metric-value">+849%</span>
+            <span class="metric-label">直近決算 売上高 前年比増</span>
+          </div>
+          <div class="metric-box">
+            <span class="metric-value">+12.7%</span>
+            <span class="metric-label">粗利益率（マイナス圏からプラス転換）</span>
+          </div>
+          <div class="metric-box">
+            <span class="metric-value">2027年</span>
+            <span class="metric-label">黒字化射程圏（予測）</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>🤖 パランティア連携とスウォーム技術</h3>
+          <p>技術面で特筆すべきは、<strong>パランティア（<span class="ticker">PLTR</span>）との連携</strong>です。RCATの最新機「ブラック・ウィドウ」は、PLTRのAI画像航法ソフト「VNav」を搭載し、GPSが妨害されてもカメラ映像だけで自己位置を推定して自律飛行できます。米軍がすでに採用しているPLTRの防衛OSとシームレスに連携することは、軍の採用決定において決定的な強みです。</p>
+          <p>さらにApiumというスウォームロボティクス企業を買収しており、<strong>一人の兵士が一台のタブレットで数十機のドローン群を同時操作</strong>できます。電子戦耐性（ジャミング対策）も徹底されており、技術スタックは極めて高水準です。</p>
+        </div>
+
+        <div class="card">
+          <h3>⚡ ビッグカタリスト：SRR Tranche 2 契約</h3>
+          <p>現在、RCATは米陸軍の次期短距離偵察ドローン「<strong>SRR Tranche 2</strong>」の最終候補として、Skydio（スカイダイオ）と一騎打ちをしている状況です。</p>
+          <p>この契約を獲得すれば、<span class="highlight">数百億円規模</span>の売上が一気に確定し、株価的にはケタ違いのカタリストになります。</p>
+        </div>
+
+        <div class="risk-box">
+          <p>⚠️ <strong>リスク注意</strong>：現状は大幅な営業赤字。SRR契約が取れなかった場合のダウンサイドも当然あります。RCATはポートフォリオの「爆発枠」として、リスク許容度に合った少額で仕込む銘柄として位置づけてください。</p>
+        </div>
+      </section>
+
+      <!-- Chapter 5 -->
+      <section id="chapter-5">
+        <h2>第5章｜まとめと投資シナリオ</h2>
+
+        <div class="card">
+          <p>ドローン銘柄への投資は、単なる機体メーカーへの投資ではなく、<strong>「空飛ぶエッジAI端末のプラットフォーマー」へのパラダイムシフト</strong>を見極めるゲームです。今の調整局面で静かに仕込んでいる人と、次に有事のニュースが出てから慌てて買いに行く人とでは、取れる利益がまったく違ってきます。</p>
+        </div>
+
+        <table class="summary-table">
+          <thead>
+            <tr>
+              <th>銘柄</th>
+              <th>規模</th>
+              <th>役割</th>
+              <th>強み</th>
+              <th>カタリスト</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="ticker">AVAV</span><br><small>エアロヴァイロンメント</small></td>
+              <td>大型</td>
+              <td><span class="role-tag role-core">守りのコア</span></td>
+              <td>粗利<span class="highlight">40%</span>・黒字・GPS非依存技術</td>
+              <td>ペンタゴン調達拡大・レプリケーター構想</td>
+            </tr>
+            <tr>
+              <td><span class="ticker">KTOS</span><br><small>クラトス・ディフェンス</small></td>
+              <td>中型</td>
+              <td><span class="role-tag role-hybrid">成長ハイブリッド</span></td>
+              <td>標的機CF×AI無人戦闘機ヴァルキリー・滑走路不要</td>
+              <td>CCAプログラム予算執行・テスト成功ニュース</td>
+            </tr>
+            <tr>
+              <td><span class="ticker">RCAT</span><br><small>レッド・キャット</small></td>
+              <td>小型</td>
+              <td><span class="role-tag role-alpha">アルファ狙い</span></td>
+              <td>売上<span class="highlight">+849%</span>・国策×PLTR連携・スウォーム技術</td>
+              <td>SRR Tranche 2 契約獲得・黒字化転換</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="strategy-box">
+          <p><strong>推奨ポートフォリオ構成イメージ</strong>：<span class="ticker">AVAV</span>で守りを固めて（コアポジション）、<span class="ticker">KTOS</span>で中間の成長を取り（サテライト）、<span class="ticker">RCAT</span>で「アルファ」を狙いにいく（少額・爆発枠）。時価総額に応じた分散投資が、次の熱狂期に向けた最も合理的な構築方法です。</p>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- ════════ FOOTER ════════ -->
+    <footer>
+      <div class="disclaimer">
+        <p>⚠️ <strong>免責事項</strong></p>
+        <p>本記事は情報提供を目的としたものであり、特定の銘柄への投資を推奨するものではありません。株式投資にはリスクが伴います。投資はご自身の判断と責任でお願いいたします。</p>
+      </div>
+      <p class="copyright">© TechMoney｜2026年6月12日</p>
+    </footer>
+
+  </div>
+</body>
+</html>

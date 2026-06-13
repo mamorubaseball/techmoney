@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="半導体の次は宇宙だ！宇宙関連銘柄・ETF完全解説。なぜ今宇宙なのか、注目銘柄、ETF戦略、リスクと現実をまとめた投資判断レポート。">
+    <title>宇宙ビジネス投資レポート - SPACE INVESTMENT REPORT</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;800&family=Noto+Sans+JP:wght@300;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        :root {
+            --bg-dark: #050510;
+            --bg-gradient: linear-gradient(180deg, #0a0a1a 0%, #050510 100%);
+            --primary: #00f2fe;
+            --secondary: #4facfe;
+            --accent: #b06ab3;
+            --text-main: #ffffff;
+            --text-muted: #a0a0b0;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --card-border: rgba(255, 255, 255, 0.08);
+        }
+        body {
+            background-color: var(--bg-dark);
+            background-image: var(--bg-gradient);
+            color: var(--text-main);
+            font-family: 'Inter', 'Noto Sans JP', sans-serif;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+        /* Stars Background Animation */
+        .stars {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            background: 
+                radial-gradient(1px 1px at 20px 30px, #ffffff, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 40px 70px, #ffffff, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 50px 160px, #ffffff, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 90px 40px, #ffffff, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 130px 80px, #ffffff, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 160px 120px, #ffffff, rgba(0,0,0,0));
+            background-repeat: repeat;
+            background-size: 200px 200px;
+            animation: twinkle 5s infinite linear;
+            opacity: 0.3;
+        }
+        @keyframes twinkle {
+            0% { opacity: 0.3; }
+            50% { opacity: 0.6; }
+            100% { opacity: 0.3; }
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        header {
+            padding: 120px 0 80px;
+            text-align: center;
+        }
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+        }
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+            font-weight: 300;
+        }
+        
+        section {
+            margin-bottom: 5rem;
+            animation: fadeInUp 1s ease forwards;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+        .delay-4 { animation-delay: 0.8s; }
+        .delay-5 { animation-delay: 1.0s; }
+
+        @keyframes fadeInUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h2 {
+            font-size: 2.2rem;
+            margin-bottom: 2.5rem;
+            display: inline-block;
+            position: relative;
+            font-weight: 800;
+        }
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 2px;
+        }
+        
+        .intro-text {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            background: var(--card-bg);
+            padding: 2.5rem;
+            border-radius: 16px;
+            border: 1px solid var(--card-border);
+            backdrop-filter: blur(10px);
+            margin-bottom: 4rem;
+        }
+        .intro-text p {
+            margin-bottom: 1rem;
+        }
+        .intro-text p:last-child {
+            margin-bottom: 0;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 2.5rem;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease, border-color 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), transparent);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0, 242, 254, 0.15);
+            border-color: rgba(0, 242, 254, 0.4);
+        }
+        .card:hover::before {
+            opacity: 1;
+        }
+        .ticker {
+            display: inline-block;
+            background: rgba(0, 242, 254, 0.1);
+            color: var(--primary);
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-weight: 800;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(0, 242, 254, 0.2);
+            letter-spacing: 0.05em;
+            align-self: flex-start;
+        }
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        .card p {
+            color: var(--text-muted);
+            font-size: 1rem;
+            flex-grow: 1;
+        }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(176, 106, 179, 0.05) 0%, rgba(0, 242, 254, 0.05) 100%);
+            border-radius: 20px;
+            padding: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        .highlight-box::after {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 60%);
+            pointer-events: none;
+        }
+        
+        .strategy-step {
+            display: flex;
+            margin-bottom: 2rem;
+            align-items: flex-start;
+        }
+        .strategy-step:last-child {
+            margin-bottom: 0;
+        }
+        .step-number {
+            font-size: 3rem;
+            font-weight: 900;
+            color: transparent;
+            -webkit-text-stroke: 1px rgba(0, 242, 254, 0.5);
+            margin-right: 2rem;
+            line-height: 1;
+            font-family: 'Inter', sans-serif;
+        }
+        .step-content h4 {
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+            color: var(--text-main);
+        }
+        .step-content p {
+            color: var(--text-muted);
+        }
+        
+        .alert-box {
+            background: rgba(255, 65, 108, 0.1);
+            border-left: 4px solid #ff416c;
+            padding: 2rem;
+            border-radius: 0 16px 16px 0;
+        }
+        .alert-box h3 {
+            color: #ff416c;
+            margin-bottom: 1rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 4rem 0;
+            color: var(--text-muted);
+            border-top: 1px solid var(--card-border);
+            margin-top: 6rem;
+        }
+        .disclaimer {
+            font-size: 0.85rem;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.6;
+        }
+        
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 1.8rem; }
+            .grid { grid-template-columns: 1fr; }
+            .step-number { font-size: 2rem; margin-right: 1rem; }
+            .highlight-box { padding: 2rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="stars"></div>
+
+    <header class="container delay-1">
+        <h1>Space Investment Report</h1>
+        <p class="subtitle">半導体の次は宇宙だ！次世代のメガトレンド「宇宙関連銘柄・ETF」完全解説レポート</p>
+    </header>
+
+    <main class="container">
+        
+        <!-- Chapter 1: Why Space -->
+        <section class="delay-2">
+            <h2>1. なぜ今、宇宙なのか？</h2>
+            <div class="intro-text">
+                <p>かつて「宇宙ビジネス」は政府と軍事の独占領域でしたが、現在は民間企業が本格参入し、コストが劇的に低下しています。モルガン・スタンレーの試算によると、2040年までに宇宙産業の市場規模は<strong>1兆ドル（約150兆円）</strong>を超えると言われています。</p>
+                <p>この流れを象徴するのがイーロン・マスク率いる<strong>スペースX</strong>です。ロケット再利用技術「ファルコン9」の実用化により、打ち上げコストは従来比で9割近く削減されました。この「宇宙へのアクセスコスト革命」と、アメリカ政府による宇宙を「次の国家安全保障インフラ」と位置付ける強力な後押しが重なっています。</p>
+                <p>かつてのパソコンやスマホの普及による半導体の「実需の爆発」と同じ現象が、今後宇宙ビジネスでも起きる可能性を秘めています。</p>
+            </div>
+        </section>
+
+        <!-- Chapter 2: Key Stocks -->
+        <section class="delay-3">
+            <h2>2. 宇宙関連の注目銘柄</h2>
+            <div class="grid">
+                <div class="card">
+                    <span class="ticker">ASTS</span>
+                    <h3>AST スペースモバイル</h3>
+                    <p>「衛星でスマートフォンを直接つなぐ」インフラを構築。AT&Tやボーダフォンなど大手通信キャリアと提携し、地上の基地局を宇宙に置くという壮大なビジネスを展開。夢は大きいが赤字企業でリスクも伴う。</p>
+                </div>
+                <div class="card">
+                    <span class="ticker">RDW</span>
+                    <h3>レッドワイヤー</h3>
+                    <p>宇宙機の部品、展開型の太陽電池パネル、3Dプリントによる宇宙構造物など、ハードウェア面で宇宙産業を支える「宇宙の建設会社」。NASAや米軍との契約実績があり、実需に近い位置にいる。</p>
+                </div>
+                <div class="card">
+                    <span class="ticker">RKLB</span>
+                    <h3>ロケット・ラボ</h3>
+                    <p>小型ロケットの打ち上げサービスを提供。スペースXとは異なり、小型・頻度重視の戦略を採用。衛星の小型化トレンドに伴い、継続的な需要増加が見込まれている。</p>
+                </div>
+                <div class="card">
+                    <span class="ticker">PL</span>
+                    <h3>プラネット・ラボ</h3>
+                    <p>地球観測衛星を大量に運用し、農業、安全保障、保険など様々な分野にデータを提供する「衛星データ経済」の先駆け的存在。</p>
+                </div>
+                <div class="card">
+                    <span class="ticker">SpaceX</span>
+                    <h3>スペースX (非上場)</h3>
+                    <p>宇宙ビジネスの絶対的本命。現在は非上場のため個人が直接株を購入することはできないが、一部の宇宙ETFを通じて間接的に投資可能。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Chapter 3: ETF Strategy -->
+        <section class="delay-4">
+            <h2>3. ETFで分散投資する戦略</h2>
+            <p style="margin-bottom: 2rem; color: var(--text-muted);">宇宙はひとつの産業ではなく、エコシステムが丸ごと生まれつつある分野です。個別銘柄のリスクを抑えたい方にはETFを通じた分散投資が推奨されます。</p>
+            <div class="grid">
+                <div class="card" style="border-color: rgba(176, 106, 179, 0.4);">
+                    <span class="ticker" style="color: #b06ab3; background: rgba(176, 106, 179, 0.1); border-color: rgba(176, 106, 179, 0.3);">UFO</span>
+                    <h3>Procure Space ETF</h3>
+                    <p style="margin-bottom: 1rem;">宇宙ビジネスへの集中度が高い代表的なETF。スペースXへの間接投資も含まれている。宇宙一本に絞って投資したい場合の現実的な選択肢。経費率は年0.75%。</p>
+                    <div style="background: rgba(0,0,0,0.2); padding: 1rem; border-radius: 8px; font-size: 0.9rem; margin-bottom: 1rem;">
+                        <strong>構成銘柄数:</strong> 約45銘柄<br>
+                        <strong>Top 5 銘柄:</strong><br>
+                        1. Planet Labs (PL)<br>
+                        2. Viasat (VSAT)<br>
+                        3. Globalstar (GSAT)<br>
+                        4. Sirius XM (SIRI)<br>
+                        5. Rocket Lab (RKLB)
+                    </div>
+                    <a href="https://us.kabutan.jp/stocks/UFO/chart" target="_blank" style="color: var(--primary); text-decoration: none; font-weight: bold; margin-top: auto; display: inline-block;">📈 株探でチャートを見る →</a>
+                </div>
+                <div class="card" style="border-color: rgba(176, 106, 179, 0.4);">
+                    <span class="ticker" style="color: #b06ab3; background: rgba(176, 106, 179, 0.1); border-color: rgba(176, 106, 179, 0.3);">ROKT</span>
+                    <h3>SPDR S&P Kensho Final Frontiers</h3>
+                    <p style="margin-bottom: 1rem;">S&Pが定義した宇宙・海洋開発関連の銘柄群に投資するETF。少し幅広い「フロンティア産業」全体をカバーし、分散を効かせたい方向け。経費率は0.45%と比較的低め。</p>
+                    <div style="background: rgba(0,0,0,0.2); padding: 1rem; border-radius: 8px; font-size: 0.9rem; margin-bottom: 1rem;">
+                        <strong>構成銘柄数:</strong> 約30〜40銘柄<br>
+                        <strong>Top 5 銘柄:</strong><br>
+                        1. Planet Labs (PL)<br>
+                        2. Iridium Communications (IRDM)<br>
+                        3. Intuitive Machines (LUNR)<br>
+                        4. ESCO Technologies (ESE)<br>
+                        5. Ducommun (DCO)
+                    </div>
+                    <a href="https://us.kabutan.jp/stocks/ROKT/chart" target="_blank" style="color: var(--primary); text-decoration: none; font-weight: bold; margin-top: auto; display: inline-block;">📈 株探でチャートを見る →</a>
+                </div>
+                <div class="card" style="border-color: rgba(176, 106, 179, 0.4);">
+                    <span class="ticker" style="color: #b06ab3; background: rgba(176, 106, 179, 0.1); border-color: rgba(176, 106, 179, 0.3);">ARKX</span>
+                    <h3>ARK Space Exploration ETF</h3>
+                    <p style="margin-bottom: 1rem;">キャシー・ウッド率いるARKの宇宙アクティブETF。（※台本内では運用終了・別名称への言及がありますが、現在も米国市場で取引されています）</p>
+                    <div style="background: rgba(0,0,0,0.2); padding: 1rem; border-radius: 8px; font-size: 0.9rem; margin-bottom: 1rem;">
+                        <strong>構成銘柄数:</strong> 約35〜40銘柄<br>
+                        <strong>Top 5 銘柄:</strong><br>
+                        1. AeroVironment (AVAV)<br>
+                        2. Trimble (TRMB)<br>
+                        3. Iridium Communications (IRDM)<br>
+                        4. Kratos Defense (KTOS)<br>
+                        5. Teradyne (TER)
+                    </div>
+                    <a href="https://us.kabutan.jp/stocks/ARKX/chart" target="_blank" style="color: var(--primary); text-decoration: none; font-weight: bold; margin-top: auto; display: inline-block;">📈 株探でチャートを見る →</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Chapter 4: Risks -->
+        <section class="delay-5">
+            <h2>4. リスクと現実の直視</h2>
+            <div class="alert-box">
+                <h3>ボラティリティに注意</h3>
+                <p>現在の宇宙関連株は「期待値だけで動いている」状態です。実際の売上や利益が安定している企業は少なく、ニュースや政策発表で株価が大きく上下します。ASTSのように数ヶ月で株価が1/3になるリスクや、ロケット打ち上げ失敗による急落も日常茶飯事です。</p>
+                <p style="margin-top: 1rem; font-weight: bold;">鉄則：生活費を削らず、「5割下がっても精神的に耐えられる余裕資金」でのみ参入すること。</p>
+            </div>
+        </section>
+
+        <!-- Chapter 5: How to Buy -->
+        <section class="delay-5">
+            <h2>5. いつ、どう買うか？2つの投資戦略</h2>
+            <div class="highlight-box">
+                <div class="strategy-step">
+                    <div class="step-number">01</div>
+                    <div class="step-content">
+                        <h4>実需が見えてから買う戦略</h4>
+                        <p>衛星通信の契約急増や、宇宙データが主要産業で採用され始めたという確実なニュースが出てから投資する方法。リスクは大きく下がりますが、その時点では既に株価が一定水準まで上がっている可能性が高いです。確実性重視の方におすすめです。</p>
+                    </div>
+                </div>
+                <div class="strategy-step">
+                    <div class="step-number">02</div>
+                    <div class="step-content">
+                        <h4>今からコツコツ積み立て、実需の爆発で利確する戦略</h4>
+                        <p>毎月定額（例：1万円ずつ）をETFで買い続ける。3年後、5年後に実需が生まれ、株価が大きく上昇したタイミングで売却する。一括投資による急落リスクを回避し、時間を分散させて心理的負担を減らす、最も現実的で再現性の高い戦略です。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <p class="disclaimer">
+                【免責事項】本レポートに記載されている内容は、情報提供を目的とした個人的な見解であり、特定の銘柄やETFの購入を推奨するものではありません。投資はあくまでご自身の判断と責任のもとで行うようにしてください。
+            </p>
+            <p style="margin-top: 1rem;">&copy; TechMoney Space Investment Report</p>
+        </div>
+    </footer>
+</body>
+</html>

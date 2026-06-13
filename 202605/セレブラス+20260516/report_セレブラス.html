@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>セレブラス・システムズ (CBRS) 投資判断レポート</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;800&family=Noto+Sans+JP:wght@300;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            background-color: #050510;
+            background-image: linear-gradient(180deg, #0a0a1a 0%, #050510 100%);
+            color: #ffffff;
+            font-family: 'Inter', 'Noto Sans JP', sans-serif;
+            line-height: 1.7;
+            padding-bottom: 50px;
+        }
+        .container { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #00f2fe, #4facfe);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .subtitle { color: #a0a0b0; margin-bottom: 40px; font-size: 1.1rem; }
+        
+        .card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(10px);
+        }
+        .card h2 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            border-bottom: 2px solid rgba(0, 242, 254, 0.3);
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+        ul { list-style: none; margin-left: 0; }
+        li { margin-bottom: 12px; position: relative; padding-left: 20px; }
+        li::before {
+            content: "•";
+            color: #00f2fe;
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+        .highlight { color: #00f2fe; font-weight: bold; }
+        .warning { color: #ff416c; font-weight: bold; }
+        .source-link { font-size: 0.85rem; color: #4facfe; text-decoration: none; margin-left: 8px; border-bottom: 1px solid transparent; transition: border-color 0.2s; font-weight: normal; }
+        .source-link:hover { border-color: #4facfe; }
+        
+        .link-btn {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(0, 242, 254, 0.1);
+            color: #00f2fe;
+            padding: 12px 24px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            border: 1px solid rgba(0, 242, 254, 0.3);
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+        .link-btn:hover {
+            background: rgba(0, 242, 254, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 242, 254, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Cerebras Systems 投資判断レポート</h1>
+        <p class="subtitle">〜 次のNVIDIA候補？ テンバガーを狙うための1次情報サマリー 〜</p>
+        
+        <div class="card">
+            <h2>1. 企業概要とIPOの基本情報</h2>
+            <ul>
+                <li><strong>企業名</strong>: セレブラス・システムズ（Cerebras Systems）</li>
+                <li><strong>ティッカー</strong>: <span class="highlight">CBRS</span></li>
+                <li><strong>設立</strong>: 2016年（共同創業者5名は元SeaMicro出身）</li>
+                <li><strong>上場日</strong>: 2026年5月14日（NASDAQ）</li>
+                <li><strong>IPO価格</strong>: 185ドル（機関投資家の需要は想定の20倍超） <a href="https://www.sec.gov/edgar/search/#/q=Cerebras" target="_blank" class="source-link">[👉 SEC EDGAR - S-1申請書類]</a></li>
+                <li><strong>初日株価推移</strong>: 始値 350ドル / 高値 386ドル / <span class="highlight">終値 311ドル超（+68%）</span> <a href="https://finance.yahoo.com/quote/CBRS/" target="_blank" class="source-link">[👉 Yahoo Finance - CBRS]</a></li>
+                <li><strong>時価総額</strong>: 約950億ドル（約14兆円）。2019年のUber以来最大の米国テックIPO。</li>
+            </ul>
+            <a href="https://us.kabutan.jp/stocks/CBRS/chart" target="_blank" class="link-btn">📈 株探で CBRS のチャートを見る</a>
+        </div>
+
+        <div class="card">
+            <h2>2. コア技術：「ウェーハスケールエンジン（WSE-3）」</h2>
+            <ul>
+                <li><strong>スペック</strong>: 面積約46,200平方mm（iPad相当）。トランジスタ数4兆個、コア数90万個。 <a href="https://cerebras.ai/product/chip/" target="_blank" class="source-link">[👉 Cerebras公式 - WSE-3スペック]</a></li>
+                <li><strong>対NVIDIA (B200) 比較</strong>: トランジスタ数 <span class="highlight">19倍</span>、演算性能 <span class="highlight">28倍</span>、推論速度 <span class="highlight">最大15倍</span>。 <a href="https://cerebras.ai/blog/cerebras-wse-3-the-fastest-ai-chip-in-the-world" target="_blank" class="source-link">[👉 Cerebras公式発表資料]</a></li>
+                <li><strong>アーキテクチャ</strong>: 「フェイルインプレース（fail-in-place）」により製造欠陥を迂回して動作可能。</li>
+                <li><strong>留意点</strong>: オンチップメモリは約44GB。超大規模モデルには外付け「MemoryX」が必要。</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2>3. 業績と財務データ</h2>
+            <ul>
+                <li><strong>売上高（2025年）</strong>: 約5億1,000万ドル（前年比 +76%） <a href="https://www.sec.gov/edgar/search/#/q=Cerebras" target="_blank" class="source-link">[👉 SEC S-1 財務諸表]</a></li>
+                <li><strong>損益</strong>: GAAPベースは黒字転換（非現金特別利益3.63億ドルを含む）。<span class="warning">実質的な営業損益は赤字</span>。</li>
+                <li><strong>バリュエーション</strong>: <span class="warning">PSR 93.9倍、PER 547倍</span> という超高水準（NVIDIAのPSRは通常30倍前後）。</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2>4. 顧客・パートナーシップとリスク</h2>
+            <h3 style="margin: 15px 0 10px; color: #a0a0b0; font-size: 1.1rem;">■ 追い風となる大型契約</h3>
+            <ul>
+                <li><strong>OpenAI</strong>: 総額200億ドル以上の長期契約を締結（最大10%のワラント付与）。<br>
+                ※ サム・アルトマンCEOが約8.9万株、グレッグ・ブロックマン氏が約7.8万株を保有。 <a href="https://www.sec.gov/edgar/search/#/q=Cerebras" target="_blank" class="source-link">[👉 契約・保有状況 (SEC S-1)]</a></li>
+                <li><strong>AWS</strong>: 2026年3月にデータセンター導入契約締結（Amazon Bedrock経由で提供予定）。</li>
+            </ul>
+            <h3 style="margin: 25px 0 10px; color: #a0a0b0; font-size: 1.1rem;">■ 警戒すべきリスク要素</h3>
+            <ul>
+                <li><strong>顧客集中リスク</strong>: MBZUAI（62%）とG42（24%）の<span class="warning">UAE関連2社で売上の約86%を占有</span>。地政学・規制リスク大。 <a href="https://www.sec.gov/edgar/search/#/q=Cerebras" target="_blank" class="source-link">[👉 リスクファクター (SEC S-1)]</a></li>
+                <li><strong>買収動向</strong>: 上場直前にソフトバンク・ARMからの買収提案を拒否。 <a href="https://www.bloomberg.co.jp/" target="_blank" class="source-link">[👉 Bloomberg報道等]</a></li>
+                <li><strong>NVIDIAの反撃</strong>: NVIDIAは推論特化チップ「Groq」資産を200億ドルで買収済み。</li>
+            </ul>
+        </div>
+
+        <div class="card" style="border-color: rgba(0, 242, 254, 0.4); box-shadow: 0 8px 30px rgba(0, 242, 254, 0.1);">
+            <h2>5. 投資判断のサマリー</h2>
+            <p style="margin-bottom: 15px;">テンバガーのポテンシャルを秘めた革新的企業だが、<strong>現在のバリュエーション（PSR 93.9倍 / PER 547倍）は極めて割高</strong>であり、膨大な期待がすでに株価に織り込まれている状態。</p>
+            <p style="margin-bottom: 15px;">すぐに飛びつくのではなく、以下のポイントを確認することが推奨される：</p>
+            <ul>
+                <li>第1四半期の決算での実益の確認</li>
+                <li>OpenAIやAWSとの巨額契約が実際の売上として計上され始めるペース</li>
+                <li>ロックアップ解除前後の株価の動き</li>
+            </ul>
+            <p style="margin-top: 15px; color: #a0a0b0; font-size: 0.9rem;">※ 今すぐ投資したい場合でも、ポートフォリオの1〜2%程度の打診買いに留めるのが現実的。</p>
+        </div>
+    </div>
+</body>
+</html>
