@@ -1,0 +1,1 @@
+A friendly, bright classroom setting, learning a new language together.
